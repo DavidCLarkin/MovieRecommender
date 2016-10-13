@@ -35,7 +35,7 @@ public class TermList {
 		scan.close();
 	}	
 
-	public static ArrayList<Term> getTermList()
+	public ArrayList<Term> getTermList()
 	{
 		return terms;
 	}
