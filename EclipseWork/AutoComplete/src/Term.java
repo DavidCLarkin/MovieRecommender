@@ -16,6 +16,10 @@ public class Term {
 	{
 		this.term = term;
 		this.weight = weight;
+		if(weight<=0)
+		{
+			setWeight(0.0);
+		}
 	}
 	
 	public String getTerm()
@@ -35,7 +39,10 @@ public class Term {
 	
 	public void setWeight(double weight)
 	{
-		this.weight = weight;
+		if(weight>=0)
+		{
+			this.weight = weight;
+		}
 	}
 
 	@Override
