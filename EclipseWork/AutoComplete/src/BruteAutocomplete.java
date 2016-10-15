@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class BruteAutocomplete implements AutoComplete {
 	
@@ -24,8 +26,18 @@ public class BruteAutocomplete implements AutoComplete {
 
 	@Override
 	public String bestMatch(String prefix) {
-		// TODO Auto-generated method stub
-		return null;
+		Term bestMatch = new Term(null,0);
+		List<Term> matchedList = new ArrayList<Term>();
+		for(int i=0;i<terms.getTermList().size();i++)
+		{
+			if(terms.getTermList().get(i).getTerm().contains(prefix))
+			{
+				bestMatch = terms.getTermList().get(i);
+				matchedList.add(bestMatch);
+				//System.out.println(bestMatch);
+			}
+		}
+		return matchedList.toString();
 	}
 
 	@Override

@@ -17,10 +17,13 @@ public class Driver {
 		Driver app = new Driver();
 		Term term = new Term(null,0);
 		termList.readFile();
-		//System.out.println(termList.getTermList());
-		System.out.println("Enter a term: ");
-		String word = input.nextLine();
-		System.out.println(Ba.weightOf(word));
+		//System.out.println("Enter a term: ");
+		//String word = input.nextLine();
+		//System.out.println(Ba.weightOf(word)); //testing weightOf Method
+		System.out.println("Enter a prefix: ");
+		String prefix = input.nextLine();
+		System.out.println(Ba.bestMatch(prefix)); //testing bestMatch
+		
 	}
 
 }

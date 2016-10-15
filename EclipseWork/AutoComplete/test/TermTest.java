@@ -31,6 +31,9 @@ public class TermTest {
 		assertEquals(1234, term1.getWeight(), 0);
 		term1.setWeight(0);
 		assertEquals(0, term1.getWeight(), 0);
+		term2.setTerm("test");
+		assertEquals("test", term2.getTerm());
 	}
+	
 
 }
