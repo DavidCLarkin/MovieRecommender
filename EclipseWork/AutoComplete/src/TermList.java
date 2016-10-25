@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -34,6 +35,7 @@ public class TermList {
 			}
 		}
 		scan.close();
+		Collections.sort(terms, Term.BY_WEIGHT); //sort the arraylist by weight.
 	}	
 
 	public ArrayList<Term> getTermList()

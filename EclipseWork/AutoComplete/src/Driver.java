@@ -7,6 +7,7 @@ public class Driver {
 	public static Scanner input = new Scanner(System.in);
 	public static TermList termList = new TermList();
 	public static BruteAutocomplete Ba = new BruteAutocomplete();
+	public static QuickAutocomplete Qa = new QuickAutocomplete();
 	
 	public Driver()
 	{
@@ -15,14 +16,13 @@ public class Driver {
 	public static void main(String[] args) throws IOException
 	{
 		Driver app = new Driver();
-		Term term = new Term(null,0);
 		termList.readFile();
 		runMenu();
 	}
 	
 	public static void runMenu()
 	{
-	    System.out.println("Enter what you want to do \nChoices: \n 1) Get weight of Term\n 2) Search for a Term\n 3) Search for Terms");
+	    System.out.println("Enter what you want to do \nChoices: \n 1) Get weight of Term\n 2) Search for Terms\n 3) Search for 1 Term");
 	    int choice = input.nextInt();
 	    switch (choice) 
 	    {
@@ -56,10 +56,14 @@ public class Driver {
 			    		System.out.println("Invalid number");
 			    		input.next();
 			    	}
-		    		System.out.print(Ba.matches(word, cap));
+		    		System.out.println(Ba.matches(word, cap));
 	    		break;
 	    		
 	    	case 3:
+	    		System.out.println("Enter a term to search for: ");
+	    		input.nextLine();
+	    		String prefix = input.nextLine();
+	    		System.out.println(Ba.bestMatch(prefix));
 	    }
 	}
 
