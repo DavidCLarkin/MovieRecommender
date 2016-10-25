@@ -1,14 +1,28 @@
+/**
+ * BruteAutocomplete Class
+ * 
+ * @author David Larkin
+ * @version 25/10/2016
+ */
 import java.util.ArrayList;
-
 
 public class BruteAutocomplete implements AutoComplete {
 	
 	TermList terms = new TermList();
 	
+	/**
+	 * Constructor for BruteAutocomplete
+	 */
 	public BruteAutocomplete()
 	{	 
 	}
 	
+	/**
+	 * Gets the weight of a Term by first finding a term
+	 * after a term is input.
+	 * @param String term - Term that the user is searching the weight of
+	 * @return double - A number corresponding to the weight of the Term
+	 */
 	@Override
 	public double weightOf(String term) 
 	{
@@ -18,12 +32,16 @@ public class BruteAutocomplete implements AutoComplete {
 			if(terms.getTermList().get(i).getTerm().equals(term)) //if the object is equal to the input term
 			{
 				termLookingFor = terms.getTermList().get(i); //set the Term object to the found one
-				//System.out.println(termLookingFor);
 			} 
 		}
 		return termLookingFor.getWeight(); //return the weight
 	}
 
+	/**
+	 * Gets the best matched Term for a given prefix that is input by the user
+	 * @param String prefix - A word that the user is searching for
+	 * @return String - Finds term found suiting the prefix input, and returns the Term of the prefix.  
+	 */
 	@Override
 	public String bestMatch(String prefix) {
 		Term bestMatch = new Term(null,0);
@@ -42,6 +60,13 @@ public class BruteAutocomplete implements AutoComplete {
 		return bestMatch.getTerm();
 	}
 
+	/**
+	 * Gets a list of each term suiting an input prefix from the user, displaying up to k times, also an input.
+	 * It uses an ArrayList data structure, in which the words are added to and the list is returned.
+	 * @param String prefix - Word input from the user to search for
+	 * @param int k - Integer input from the user, statement the amount of results to show.
+	 * @return Returns the  list which is populated by a for each loop through the ArrayList.
+	 */
 	@Override
 	public Iterable<String> matches(String prefix, int k) 
 	{

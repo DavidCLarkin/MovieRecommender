@@ -1,10 +1,8 @@
 /**
  * Term Class
  * 
- * Used for I/O with the user using a menu driven system, 
- * calling various methods throughout the classes.
- * @author David Larkin
- * @version 25/10/2016
+ * Term class to create custom objects that contain
+ * the Weight and Term of each word taken from the Wiktionary.
  */
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,6 +21,12 @@ public class Term {
 	private String term;
 	private double weight;
 	
+	
+	/**
+	 * General constructor for a Term object, doesn't allow for negative weight.
+	 * @param term		Word taken from file.
+	 * @param weight	Weight(frequency) of the term.
+	 */
 	public Term(String term, double weight)
 	{
 		this.term = term;
@@ -33,21 +37,36 @@ public class Term {
 		}
 	}
 	
+	/**
+	 * Gets the word for the Term object.
+	 * @return the string word from Term.
+	 */
 	public String getTerm()
 	{
 		return term;
 	}
-	
+	/**
+	 * Gets the weight for the Term object.
+	 * @return the weight of the Term(frequency)
+	 */
 	public double getWeight()
 	{
 		return weight;
 	}
 	
+	/**
+	 * Allows user to set a Term
+	 * @param term New term for Term object.
+	 */
 	public void setTerm(String term)
 	{
 		this.term = term;
 	}
 	
+	/**
+	 * Allows user to set weight, can't be negative.
+	 * @param weight Input number(frequency)
+	 */
 	public void setWeight(double weight)
 	{
 		if(weight>=0)
@@ -56,6 +75,11 @@ public class Term {
 		}
 	}
 	
+	/**
+	 * Class to compare each Term object by it's word (String) using comparator.
+	 * @author David Larkin
+	 *
+	 */
 	public static class ByTerm implements Comparator<Term>
 	{
 		@Override
@@ -64,6 +88,11 @@ public class Term {
 		}
 	}
 	
+	/**
+	 * Class to compare each Term object by it's weight (double) using comparator.
+	 * @author David Larkin
+	 *
+	 */
 	public static class ByWeight implements Comparator<Term>
 	{
 		@Override
@@ -76,6 +105,9 @@ public class Term {
 		}
 	}
 
+	/**
+	 * toString to represent Term objects in String form.
+	 */
 	@Override
 	public String toString() {
 		return "Term [term=" + term + ", weight=" + weight + "]";

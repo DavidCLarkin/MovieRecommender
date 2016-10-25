@@ -1,12 +1,14 @@
+/**
+ * TermList Class
+ * 
+ * @author David Larkin
+ * @version 25/10/16
+ */
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-import java.net.*;
 import java.io.*;
 
 public class TermList {
@@ -17,6 +19,13 @@ public class TermList {
 	{
 	}
 	
+	/**
+	 * Reads the file, parses through it and separates each part by any whitespace. 
+	 * Uses Scanner to see if file has a next line, and if it does, keep splitting
+	 * each line by spaces, and adding a new term for each section of the file.
+	 * Sorts the terms list at the end by their weight.
+	 * @throws IOException no file found
+	 */
 	public static void readFile() throws IOException
 	{
 		Scanner scan = new Scanner(new File("D:/Programming/EclipseWork/AutoComplete/data/wiktionary.txt"), "UTF-8");
@@ -38,6 +47,10 @@ public class TermList {
 		Collections.sort(terms, Term.BY_WEIGHT); //sort the arraylist by weight.
 	}	
 
+	/**
+	 * Gets the List of terms
+	 * @return the ArrayList of Terms
+	 */
 	public ArrayList<Term> getTermList()
 	{
 		return terms;

@@ -1,3 +1,11 @@
+/**
+ * Driver Class
+ * 
+ * Used for I/O with the user using a menu driven system, 
+ * calling various methods throughout the classes.
+ * @author David Larkin
+ * @version 25/10/2016
+ */
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -13,6 +21,11 @@ public class Driver {
 	{
 	}
 	
+	/**
+	 * Reads the Wiktionary file and runs the switch statement of methods.
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException
 	{
 		Driver app = new Driver();
@@ -20,6 +33,11 @@ public class Driver {
 		runMenu();
 	}
 	
+	/**
+	 * Runs the menu after a user chooses an option.
+	 * Inherits the input and performs a function corresponding to 
+	 * the numbers on the switch statement.
+	 */
 	public static void runMenu()
 	{
 	    System.out.println("Enter what you want to do \nChoices: \n 1) Get weight of Term\n 2) Search for Terms\n 3) Search for 1 Term");
