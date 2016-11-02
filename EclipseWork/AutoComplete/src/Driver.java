@@ -29,7 +29,7 @@ public class Driver {
 	public static void main(String[] args) throws IOException
 	{
 		Driver app = new Driver();
-		termList.readFile();
+		termList.readFile("D:/Programming/EclipseWork/AutoComplete/data/wiktionary.txt");
 		runMenu();
 	}
 	

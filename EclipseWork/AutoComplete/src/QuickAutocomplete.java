@@ -27,7 +27,7 @@ public class QuickAutocomplete implements AutoComplete {
 		Term termLookingFor = new Term(null,0);
 		for(int i = 0; i <terms.getTermList().size(); i++)
 		{
-			if(terms.getTermList().get(i).getTerm().equals(term)) //if the object is equal to the input term
+			if(terms.getTermList().get(i).getTerm().equals(term.toLowerCase())) //if the object is equal to the input term
 			{
 				termLookingFor = terms.getTermList().get(i); //set the Term object to the found one
 			} 
@@ -47,7 +47,7 @@ public class QuickAutocomplete implements AutoComplete {
 		int count = 0;
 		for(Term match : terms.getTermList())
 		{
-			if(terms.getTermList().get(count).getTerm().contains(prefix))
+			if(terms.getTermList().get(count).getTerm().contains(prefix.toLowerCase()))
 			{
 				//System.out.println(match.getTerm());
 				return match.getTerm();
@@ -72,7 +72,7 @@ public class QuickAutocomplete implements AutoComplete {
 		int cnt = 0;
 		for(Term matches : terms.getTermList()) //for each loop instead of for loop
 		{
-			if(terms.getTermList().get(cnt).getTerm().startsWith(prefix))
+			if(terms.getTermList().get(cnt).getTerm().startsWith(prefix.toLowerCase()))
 			{ 
 				Term matchedTerm = new Term(null,0);
 				matchedTerm = terms.getTermList().get(cnt);//set matched Term to this object.

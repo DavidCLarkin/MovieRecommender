@@ -16,7 +16,7 @@ public class TermListTest {
 	@Before
 	public void SetUp() throws IOException
 	{
-		terms.readFile();
+		terms.readFile("D:/Programming/EclipseWork/AutoComplete/data/wiktionary.txt");
 		termsList = new ArrayList<Term>();
 	}
 	
@@ -25,6 +25,7 @@ public class TermListTest {
 	{
 		terms.getTermList();
 		assertTrue(terms.getTermList().size() > 1);
+		
 	}
 
 }

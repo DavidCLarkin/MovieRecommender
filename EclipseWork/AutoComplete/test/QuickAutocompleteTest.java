@@ -14,7 +14,7 @@ public class QuickAutocompleteTest {
 	@Before
 	public void setUp() throws IOException
 	{
-		terms.readFile();
+		terms.readFile("D:/Programming/EclipseWork/AutoComplete/data/wiktionary.txt");
 	}
 	
 	@Test
@@ -25,6 +25,7 @@ public class QuickAutocompleteTest {
 		assertEquals("was", Qa.bestMatch("s"));
 		assertEquals("Nothing found", Qa.bestMatch("bdhgfghd"));
 		assertEquals("and", Qa.bestMatch("n"));
+		assertEquals("the", Qa.bestMatch("THE")); //testing case insensitive
 	}
 	
 	@Test
@@ -41,7 +42,8 @@ public class QuickAutocompleteTest {
 	{
 		List<String> testList = asList("Term [term=off, weight=5.45832E7]", "Term [term=office, weight=1.36616E7]");
 		BruteAutocomplete Ba = new BruteAutocomplete();
-		//assertEquals(testList, Ba.matches("off", 2));
+		//assertEquals(testList, Ba.matches("off", 2)); //FOR SOME REASON THIS RETURNS 2 OF THE SAME TERM TWICE, 
+		//BUT IT WORKS IN THE DRIVER
 	}
 
 }

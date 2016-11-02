@@ -26,9 +26,9 @@ public class TermList {
 	 * Sorts the terms list at the end by their weight.
 	 * @throws IOException no file found
 	 */
-	public static void readFile() throws IOException
+	public static void readFile(String url) throws IOException
 	{
-		Scanner scan = new Scanner(new File("D:/Programming/EclipseWork/AutoComplete/data/wiktionary.txt"), "UTF-8");
+		Scanner scan = new Scanner(new File(url), "UTF-8");
 		String separator = "\\s+"; //separate by whitespace
 		String temp;
 		while (scan.hasNextLine()) //while scanner has another line

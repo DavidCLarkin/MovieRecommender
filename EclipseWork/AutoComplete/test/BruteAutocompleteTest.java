@@ -7,15 +7,12 @@ import org.junit.Test;
 
 public class BruteAutocompleteTest {
 	
-	//private Term term1 = new Term("test", 1000);
-	//private Term term2 = new Term("tester", 500);
-	//private Term term3 = new Term("gold", 700);
 	private TermList terms = new TermList();
 
 	@Before
 	public void setUp() throws IOException
 	{
-		terms.readFile();
+		terms.readFile("D:/Programming/EclipseWork/AutoComplete/data/wiktionary.txt");
 	}
 	
 	@Test
@@ -25,6 +22,7 @@ public class BruteAutocompleteTest {
 		assertEquals("the", Ba.bestMatch("the"));
 		assertEquals("was", Ba.bestMatch("s"));
 		assertEquals(null, Ba.bestMatch("bdhgfghd"));
+		assertEquals("the", Ba.bestMatch("THE")); //testing case insensitive
 	}
 	
 	@Test
@@ -41,6 +39,9 @@ public class BruteAutocompleteTest {
 	{
 		List<String> testList = asList("Term [term=off, weight=5.45832E7]", "Term [term=office, weight=1.36616E7]");
 		BruteAutocomplete Ba = new BruteAutocomplete();
-		//assertEquals(testList, Ba.matches("off", 2));
+		List<String> testLists = asList("Term [term=off, weight=5.45832E7]", "Term [term=office, weight=1.36616E7]");
+		assertEquals(testLists, Ba.matches("the", 2));
+		//assertEquals(testList, Ba.matches("off", 2)); //FOR SOME REASON THE RESULT OF THIS GIVES 2 TERMS TWICE, BUT IT
+		//WORKS IN THE DRIVER
 	}
 }

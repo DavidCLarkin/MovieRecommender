@@ -29,7 +29,7 @@ public class BruteAutocomplete implements AutoComplete {
 		Term termLookingFor = new Term(null,0);
 		for(int i = 0; i <terms.getTermList().size(); i++)
 		{
-			if(terms.getTermList().get(i).getTerm().equals(term)) //if the object is equal to the input term
+			if(terms.getTermList().get(i).getTerm().equals(term.toLowerCase())) //if the object is equal to the input term
 			{
 				termLookingFor = terms.getTermList().get(i); //set the Term object to the found one
 			} 
@@ -47,11 +47,11 @@ public class BruteAutocomplete implements AutoComplete {
 		Term bestMatch = new Term(null,0);
 		for(int i = 0; i <terms.getTermList().size(); i++)
 		{
-			if(terms.getTermList().get(i).getTerm().contains(prefix))
+			if(terms.getTermList().get(i).getTerm().contains(prefix.toLowerCase()))
 			{
 				bestMatch = terms.getTermList().get(i); //set Best match to prefix if exists.
 				for(int j = 0; j < terms.getTermList().size(); j++)
-					if(bestMatch.getWeight() < terms.getTermList().get(j).getWeight() && terms.getTermList().get(j).getTerm().contains(prefix)) //if bestMatch's weight is less than .get(j), than set best match to Term j
+					if(bestMatch.getWeight() < terms.getTermList().get(j).getWeight() && terms.getTermList().get(j).getTerm().contains(prefix.toLowerCase())) //if bestMatch's weight is less than .get(j), than set best match to Term j
 					{
 						bestMatch = terms.getTermList().get(j);
 					}
@@ -74,7 +74,7 @@ public class BruteAutocomplete implements AutoComplete {
 		
 		for(int i = 0; i <terms.getTermList().size(); i++)
 		{
-			if(terms.getTermList().get(i).getTerm().startsWith(prefix))
+			if(terms.getTermList().get(i).getTerm().startsWith(prefix.toLowerCase()))
 			{
 				Term matchedTerm = new Term(null,0);
 				matchedTerm = terms.getTermList().get(i);//set matched Term to this object.
