@@ -13,6 +13,7 @@ public class TermListTest {
 	private ArrayList<Term> termsList;
 	private TermList terms = new TermList();
 	
+	//Reading the file and setting up a termList
 	@Before
 	public void SetUp() throws IOException
 	{
@@ -20,12 +21,12 @@ public class TermListTest {
 		termsList = new ArrayList<Term>();
 	}
 	
+	//Test getting TermList
 	@Test
 	public void testGetTermList() 
 	{
 		terms.getTermList();
 		assertTrue(terms.getTermList().size() > 1);
-		
 	}
 
 }

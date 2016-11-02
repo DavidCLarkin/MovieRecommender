@@ -83,7 +83,8 @@ public class Term {
 	public static class ByTerm implements Comparator<Term>
 	{
 		@Override
-		public int compare(Term v, Term w) {
+		public int compare(Term v, Term w) 
+		{
 			return v.term.compareTo(w.term);
 		}
 	}
@@ -96,7 +97,8 @@ public class Term {
 	public static class ByWeight implements Comparator<Term>
 	{
 		@Override
-		public int compare(Term v, Term w) {
+		public int compare(Term v, Term w) 
+		{
 			if(v.weight > w.weight)
 				return -1;
 			if(v.weight < w.weight)

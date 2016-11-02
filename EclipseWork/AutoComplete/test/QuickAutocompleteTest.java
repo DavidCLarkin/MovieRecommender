@@ -11,12 +11,14 @@ public class QuickAutocompleteTest {
 	
 	private TermList terms = new TermList();
 
+	//Reading in the file
 	@Before
 	public void setUp() throws IOException
 	{
 		terms.readFile("D:/Programming/EclipseWork/AutoComplete/data/wiktionary.txt");
 	}
 	
+	//Testing the best matches algorithm
 	@Test
 	public void testBestMatch() throws IOException 
 	{
@@ -28,6 +30,7 @@ public class QuickAutocompleteTest {
 		assertEquals("the", Qa.bestMatch("THE")); //testing case insensitive
 	}
 	
+	//Testing the WeightOf algorithm
 	@Test
 	public void testWeightOf()
 	{
@@ -37,6 +40,7 @@ public class QuickAutocompleteTest {
 		assertEquals(1986690, Qa.weightOf("perpetual"),.1);
 	}
 	
+	//Testing the ArrayList of best matches
 	@Test
 	public void testMatches()
 	{

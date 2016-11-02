@@ -9,12 +9,14 @@ public class BruteAutocompleteTest {
 	
 	private TermList terms = new TermList();
 
+	//Reading in the file
 	@Before
 	public void setUp() throws IOException
 	{
 		terms.readFile("D:/Programming/EclipseWork/AutoComplete/data/wiktionary.txt");
 	}
 	
+	//Testing the best match algorithms
 	@Test
 	public void testBestMatch() throws IOException 
 	{
@@ -25,6 +27,7 @@ public class BruteAutocompleteTest {
 		assertEquals("the", Ba.bestMatch("THE")); //testing case insensitive
 	}
 	
+	//Testing the weight of terms algorithm
 	@Test
 	public void testWeightOf()
 	{
@@ -34,6 +37,7 @@ public class BruteAutocompleteTest {
 		assertEquals(1986690, Ba.weightOf("perpetual"),.1);
 	}
 	
+	//Testing the ArrayList of matches algorithm
 	@Test
 	public void testMatches()
 	{
