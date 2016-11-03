@@ -7,4 +7,6 @@ Functions of the program:
   ~0.3 milliseconds.  
 
 Testing:
-  Testing negatives of weights so that it can't be negative, tested various getters and setters for the Term class, and the TermList class   to return the ArrayList. Also tested algorithms for the AutoComplete interface while being implemented.
+  Testing negatives of weights so that it can't be negative, tested various getters and setters for the Term class, and the 
+  TermList class to return the ArrayList. Also tested algorithms for the AutoComplete interface while being implemented, both
+  in QuickAutocomplete and BruteAutocomplete. The tests are essentially the same for each one.
