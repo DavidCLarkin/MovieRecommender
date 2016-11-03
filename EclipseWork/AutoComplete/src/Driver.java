@@ -40,48 +40,94 @@ public class Driver {
 	 */
 	public static void runMenu()
 	{
-	    System.out.println("Enter what you want to do \nChoices: \n 1) Get weight of Term\n 2) Search for Terms\n 3) Search for 1 Term");
+	    System.out.println("Enter what you want to do \nChoices Below: \n BruteAutocomplete \n 1) Get weight of Term\n 2) Search for Terms\n 3) Search for 1 Term\n"
+	    		+ "----------------------\n QuickAutocomplete\n 4) Get weight of Term\n 5) Search for Terms\n 6) Search for 1 Term");
 	    int choice = input.nextInt();
 	    switch (choice) 
 	    {
+	    	//BRUTEAUTOCOMPLETE
 	    	case 1:
 	    		System.out.println("Enter a term to get the weight of:");
 	    		input.nextLine(); //Scanner bug
-	    		String term = input.nextLine();
-	    		System.out.println(Ba.weightOf(term));
+	    		String BaTerm = input.nextLine();
+	    		System.out.println(Ba.weightOf(BaTerm));
 	    		break;
+	    		
 	    	case 2:
-	    		boolean goodInput = false;
-	    		boolean goodInput2 = false;
-	    		String word="";
-	    		int cap=0;
-	    		while(!goodInput)
+	    		boolean BaGoodInput = false;
+	    		boolean BaGoodInput2 = false;
+	    		String BaWord="";
+	    		int BaCap=0;
+	    		while(!BaGoodInput)
 	    		{
 		    		System.out.println("What would you like to search for?");
 		    		input.nextLine();
-		    		word = input.nextLine();
-		    		goodInput=true;
+		    		BaWord = input.nextLine();
+		    		BaGoodInput=true;
 	    		}
-	    		while(!goodInput2)
+	    		while(!BaGoodInput2)
 		    		try
 		    		{
 			    		System.out.println("How many results would you like to see(capped at, integer)");
-			    		cap = input.nextInt();
-			    		goodInput2=true;
+			    		BaCap = input.nextInt();
+			    		BaGoodInput2=true;
 		    		}
 			    	catch(Exception e)
 			    	{
 			    		System.out.println("Invalid number");
 			    		input.next();
 			    	}
-		    		System.out.println(Ba.matches(word, cap));
+		    		System.out.println(Ba.matches(BaWord, BaCap));
 	    		break;
 	    		
 	    	case 3:
 	    		System.out.println("Enter a term to search for: ");
 	    		input.nextLine();
-	    		String prefix = input.nextLine();
-	    		System.out.println(Ba.bestMatch(prefix));
+	    		String BaPrefix = input.nextLine();
+	    		System.out.println(Qa.bestMatch(BaPrefix));
+	    		break;
+	    		
+	    		//QUICKAUTOCOMPLETE
+	    	case 4:
+	    		System.out.println("Enter a term to get the weight of:");
+	    		input.nextLine(); //Scanner bug
+	    		String QaTerm = input.nextLine();
+	    		System.out.println(Qa.weightOf(QaTerm));
+	    		break;
+	    		
+	    	case 5:
+	    		boolean QaGoodInput = false;
+	    		boolean QaGoodInput2 = false;
+	    		String QaWord="";
+	    		int cap=0;
+	    		while(!QaGoodInput)
+	    		{
+		    		System.out.println("What would you like to search for?");
+		    		input.nextLine();
+		    		QaWord = input.nextLine();
+		    		QaGoodInput=true;
+	    		}
+	    		while(!QaGoodInput2)
+		    		try
+		    		{
+			    		System.out.println("How many results would you like to see(capped at, integer)");
+			    		cap = input.nextInt();
+			    		QaGoodInput2=true;
+		    		}
+			    	catch(Exception e)
+			    	{
+			    		System.out.println("Invalid number");
+			    		input.next();
+			    	}
+		    		System.out.println(Qa.matches(QaWord, cap));
+	    		break;
+	    		
+	    	case 6:
+	    		System.out.println("Enter a term to search for: ");
+	    		input.nextLine();
+	    		String QaPrefix = input.nextLine();
+	    		System.out.println(Qa.bestMatch(QaPrefix));
+	    		break;
 	    }
 	}
 

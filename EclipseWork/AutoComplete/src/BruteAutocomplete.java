@@ -57,7 +57,7 @@ public class BruteAutocomplete implements AutoComplete {
 					}
 			}
 		}
-		return bestMatch.getTerm();
+		return bestMatch.toString();
 	}
 
 	/**

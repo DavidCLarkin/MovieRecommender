@@ -49,8 +49,7 @@ public class QuickAutocomplete implements AutoComplete {
 		{
 			if(terms.getTermList().get(count).getTerm().contains(prefix.toLowerCase()))
 			{
-				//System.out.println(match.getTerm());
-				return match.getTerm();
+				return match.toString();
 			}
 			count++;
 		}

@@ -112,6 +112,6 @@ public class Term {
 	 */
 	@Override
 	public String toString() {
-		return "Term [term=" + term + ", weight=" + weight + "]";
+		return "Term: term = " + term + ", weight = " + weight +"\n";
 	}
 }
