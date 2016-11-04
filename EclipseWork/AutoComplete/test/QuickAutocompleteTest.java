@@ -38,6 +38,9 @@ public class QuickAutocompleteTest {
 		assertEquals(5.6271872E9, Qa.weightOf("the"),.1); //.1 is bias
 		assertEquals(0.0,Qa.weightOf("testnotexist"),.1); //testing a term that doesn't exist
 		assertEquals(1986690, Qa.weightOf("perpetual"),.1);
+		assertEquals(1.4598E7, Qa.weightOf("AMERICAN"),.1);
+		assertEquals(1.4598E7, Qa.weightOf("American"),.1);
+		assertEquals(1.4598E7, Qa.weightOf("american"),.1);
 	}
 	
 	//Testing the ArrayList of best matches
@@ -46,8 +49,9 @@ public class QuickAutocompleteTest {
 	{
 		List<String> testList = asList("Term [term=off, weight=5.45832E7]", "Term [term=office, weight=1.36616E7]");
 		BruteAutocomplete Ba = new BruteAutocomplete();
+		assertEquals(testList, Ba.matches("off", 2));
 		//assertEquals(testList, Ba.matches("off", 2)); //FOR SOME REASON THIS RETURNS 2 OF THE SAME TERM TWICE, 
-		//BUT IT WORKS IN THE DRIVER
+		//BUT IT WORKS IN THE DRIVER, it seems to add the first term twice
 	}
 
 }

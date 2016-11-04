@@ -35,16 +35,18 @@ public class BruteAutocompleteTest {
 		assertEquals(5.6271872E9, Ba.weightOf("the"),.1); //.1 is bias
 		assertEquals(0.0,Ba.weightOf("testnotexist"),.1); //testing a term that doesn't exist
 		assertEquals(1986690, Ba.weightOf("perpetual"),.1);
+		assertEquals(1.4598E7, Ba.weightOf("AMERICAN"),.1);
+		assertEquals(1.4598E7, Ba.weightOf("American"),.1);
+		assertEquals(1.4598E7, Ba.weightOf("american"),.1);
 	}
 	
 	//Testing the ArrayList of matches algorithm
 	@Test
 	public void testMatches()
 	{
-		List<String> testList = asList("Term [term=off, weight=5.45832E7]", "Term [term=office, weight=1.36616E7]");
 		BruteAutocomplete Ba = new BruteAutocomplete();
-		List<String> testLists = asList("Term [term=off, weight=5.45832E7]", "Term [term=office, weight=1.36616E7]");
-		assertEquals(testLists, Ba.matches("the", 2));
+		List<String> testLists = asList("Term: term = off, weight=5.45832E7", "Term: term = office, weight = 1.36616E7");
+		assertEquals(testLists, Ba.matches("off", 2));
 		//assertEquals(testList, Ba.matches("off", 2)); //FOR SOME REASON THE RESULT OF THIS GIVES 2 TERMS TWICE, BUT IT
 		//WORKS IN THE DRIVER
 	}

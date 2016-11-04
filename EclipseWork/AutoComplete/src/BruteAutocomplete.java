@@ -5,6 +5,7 @@
  * @version 25/10/2016
  */
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class BruteAutocomplete implements AutoComplete {
 	
@@ -29,7 +30,7 @@ public class BruteAutocomplete implements AutoComplete {
 		Term termLookingFor = new Term(null,0);
 		for(int i = 0; i <terms.getTermList().size(); i++)
 		{
-			if(terms.getTermList().get(i).getTerm().equals(term.toLowerCase())) //if the object is equal to the input term
+			if(terms.getTermList().get(i).getTerm().equalsIgnoreCase(term.toLowerCase())) //if the object is equal to the input term
 			{
 				termLookingFor = terms.getTermList().get(i); //set the Term object to the found one
 			} 
@@ -51,13 +52,13 @@ public class BruteAutocomplete implements AutoComplete {
 			{
 				bestMatch = terms.getTermList().get(i); //set Best match to prefix if exists.
 				for(int j = 0; j < terms.getTermList().size(); j++)
-					if(bestMatch.getWeight() < terms.getTermList().get(j).getWeight() && terms.getTermList().get(j).getTerm().contains(prefix.toLowerCase())) //if bestMatch's weight is less than .get(j), than set best match to Term j
+					if(bestMatch.getWeight() < terms.getTermList().get(j).getWeight() && terms.getTermList().get(j).getTerm().toLowerCase().contains(prefix.toLowerCase())) //if bestMatch's weight is less than .get(j), than set best match to Term j
 					{
 						bestMatch = terms.getTermList().get(j);
 					}
 			}
 		}
-		return bestMatch.toString();
+		return bestMatch.getTerm();
 	}
 
 	/**

@@ -27,7 +27,7 @@ public class QuickAutocomplete implements AutoComplete {
 		Term termLookingFor = new Term(null,0);
 		for(int i = 0; i <terms.getTermList().size(); i++)
 		{
-			if(terms.getTermList().get(i).getTerm().equals(term.toLowerCase())) //if the object is equal to the input term
+			if(terms.getTermList().get(i).getTerm().equalsIgnoreCase(term.toLowerCase())) //if the object is equal to the input term
 			{
 				termLookingFor = terms.getTermList().get(i); //set the Term object to the found one
 			} 
@@ -47,9 +47,9 @@ public class QuickAutocomplete implements AutoComplete {
 		int count = 0;
 		for(Term match : terms.getTermList())
 		{
-			if(terms.getTermList().get(count).getTerm().contains(prefix.toLowerCase()))
+			if(terms.getTermList().get(count).getTerm().toLowerCase().contains(prefix.toLowerCase()))
 			{
-				return match.toString();
+				return match.getTerm(); //don't have to sort because sorted in TermList, returns first found
 			}
 			count++;
 		}
@@ -88,7 +88,6 @@ public class QuickAutocomplete implements AutoComplete {
 		    	finalList.add(matchedTerm); //while count is less than input k, add those items to list.
 		    }
 		    count++;
-		    Collections.sort(finalList, String.CASE_INSENSITIVE_ORDER);
 		}
 		
 		return finalList; //return final list of k terms
