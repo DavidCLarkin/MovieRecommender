@@ -23,7 +23,8 @@ public class Driver {
 	
 	public static void runMenu()
 	{
-	    System.out.println("Enter what you want to do \nChoices Below: \n 1) Add a User\n 2) Remove a User");
+	    System.out.println("Enter what you want to do \nChoices Below: \n 1) Add a User\n 2) Remove a User"
+	    		+ "\n 3) Get movie by ID");
 	    
 	    int choice = input.nextInt();
 	    switch (choice) 
@@ -52,6 +53,11 @@ public class Driver {
 	    		app.removeUser(userID);
 	    		System.out.println(data.getUserList().size());
 	    		break;
+	    	case 3:
+	    		System.out.println("Find a movie by ID");
+	    		input.nextLine();
+	    		int movieID = input.nextInt();
+	    		System.out.println(app.getMovie(movieID));
 	    }
 	}
 }
