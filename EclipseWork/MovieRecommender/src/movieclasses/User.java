@@ -10,7 +10,7 @@ public class User implements Serializable {
 	private String occupation;
 	private int userID;
 	
-	public User(String firstName, String lastName, int age, String gender, String occupation, int userID)
+	public User(int userID, String firstName, String lastName, int age, String gender, String occupation)
 	{
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -70,8 +70,8 @@ public class User implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "User: firstName = " + firstName + ", LastName = " + lastName + ", Age = " + age + ", Gender = " + gender
-				+ ", Occupation = " + occupation + ", UserID = " + userID;
+		return "User: UserID = " + userID + ", firstName = " + firstName + ", LastName = " + lastName + ", Age = " + age + ", Gender = " + gender
+				+ ", Occupation = " + occupation;
 	}
 
 }

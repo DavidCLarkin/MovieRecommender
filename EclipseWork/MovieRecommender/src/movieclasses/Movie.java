@@ -3,18 +3,28 @@ import java.io.Serializable;
 
 public class Movie implements Serializable {
 	
+	private int movieID;
 	private String title;
-	private int year;
+	private String release;
 	private String url;
 	
 
-	public Movie(String title, int year, String url)
+	public Movie(int movieID, String title, String release, String url)
 	{
+		this.movieID = movieID;
 		this.title = title;
-		this.year = year;
+		this.release = release;
 		this.url = url;
 	}
 	
+	public int getMovieID() {
+		return movieID;
+	}
+
+	public void setMovieID(int movieID) {
+		this.movieID = movieID;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -23,12 +33,12 @@ public class Movie implements Serializable {
 		this.title = title;
 	}
 
-	public int getYear() {
-		return year;
+	public String getRelease() {
+		return release;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setRelease(String release) {
+		this.release = release;
 	}
 	
 	public String getUrl() {
@@ -41,7 +51,7 @@ public class Movie implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Movie: Title = " + title + ", Year = " + year + ", Url = " + url;
+		return "Movie: MovieID = " + movieID + ", Title = " + title + ", Release = " + release + ", Url = " + url;
 	}
 	
 }
