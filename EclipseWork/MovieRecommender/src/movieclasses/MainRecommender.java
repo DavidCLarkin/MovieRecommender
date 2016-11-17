@@ -1,12 +1,22 @@
 package movieclasses;
 
+import java.util.ArrayList;
+import utils.Serializer;
+
 public class MainRecommender implements Recommender{
 
 	private LoadData data = new LoadData();
+	private Serializer serializer;
 	
 	public MainRecommender()
 	{
 	}
+	
+	public MainRecommender(Serializer serializer)
+	{
+		this.serializer = serializer;
+	}
+	
 	
 	@Override
 	public void addUser(String firstName, String lastName, int age, String gender, String occupation) 
@@ -24,7 +34,7 @@ public class MainRecommender implements Recommender{
 	@Override
 	public void addMovie(String title, int year, String url) 
 	{
-		
+		data.getMovieList().add(new Movie(data.getMovieList().size()+1, title, Integer.toString(year), url));
 	}
 
 	@Override
@@ -41,14 +51,27 @@ public class MainRecommender implements Recommender{
 			if(data.getMovieList().get(i).getMovieID() == movieID)
 				return data.getMovieList().get(i).toString();
 		}
-		return "Doesn't exist";
+		return "Movie by that ID doesn't exist";
 	}
 
 	@Override
 	public String getUserRatings(int userID) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		for(int i = 0; i < data.getRatingList().size(); i++) 
+		{
+			if(userID == data.getRatingList().get(i).getUserID()) //When input = Ratings object ID
+			{
+				ArrayList<String> ratings = new ArrayList<String>();
+				for(int j = 0; j < data.getRatingList().size(); j++)
+					if(userID == data.getRatingList().get(j).getUserID())
+					{
+						ratings.add("Rating: "+data.getRatingList().get(j).getRating());
+					}
+				return ratings.toString();
+			}
+		}
+			
+		return "Doesn't exist";
 	}
 
 	@Override
@@ -68,14 +91,25 @@ public class MainRecommender implements Recommender{
 	@Override
 	public void load() 
 	{
-		// TODO Auto-generated method stub
+		try {
+			serializer.read();
+		} catch (Exception e) {
+			System.out.println("Cannot be read "+e);
+		}
+		data = (LoadData) serializer.pop();
 		
 	}
 
 	@Override
 	public void write() 
 	{
-		// TODO Auto-generated method stub
+		serializer.push(data);
+		try {
+			serializer.write();
+		} catch (Exception e) {
+			System.out.println("Cannot be stored "+e);
+			e.printStackTrace();
+		}
 		
 	}
 
