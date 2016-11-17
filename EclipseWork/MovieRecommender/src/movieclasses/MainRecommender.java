@@ -61,13 +61,23 @@ public class MainRecommender implements Recommender{
 		{
 			if(userID == data.getRatingList().get(i).getUserID()) //When input = Ratings object ID
 			{
-				ArrayList<String> ratings = new ArrayList<String>();
+				ArrayList<Integer> ratings = new ArrayList<Integer>();
+				ArrayList<String> movies = new ArrayList<String>();
 				for(int j = 0; j < data.getRatingList().size(); j++)
+				{
 					if(userID == data.getRatingList().get(j).getUserID())
 					{
-						ratings.add("Rating: "+data.getRatingList().get(j).getRating());
+						ratings.add(data.getRatingList().get(j).getRating());
 					}
-				return ratings.toString();
+				}
+				for(int k = 0; k < data.getMovieList().size(); k++)
+				{
+					if(data.getRatingList().get(i).getMovieID() == data.getMovieList().get(k).getMovieID())
+					{
+						movies.add(data.getMovieList().get(k).getTitle());
+					}
+				}
+				return ratings.toString()+movies.toString();
 			}
 		}
 			
@@ -84,7 +94,7 @@ public class MainRecommender implements Recommender{
 	@Override
 	public Iterable<String> getTopTenMovies() 
 	{
-		// TODO Auto-generated method stub
+		//if ratings are high on a movie compared to other movies
 		return null;
 	}
 

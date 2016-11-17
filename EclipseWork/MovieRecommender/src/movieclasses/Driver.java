@@ -39,6 +39,7 @@ public class Driver {
 	    switch (choice) 
 	    //String firstName, String lastName, int age, String gender, String occupation
 	    {
+	    	//Add user
 	    	case 1:
 	    		System.out.println("Enter a first name for the user: ");
 	    		input.nextLine(); //Scanner bug
@@ -55,6 +56,7 @@ public class Driver {
 	    		app.addUser(firstName,lastName,age,gender,occupation);
 	    		System.out.println(data.getUserList().get(5));
 	    		break;
+	    	//Remove user
 	    	case 2:
 	    		System.out.println("Enter the number of the user you want to delete: ");
 	    		input.nextLine();
@@ -62,18 +64,21 @@ public class Driver {
 	    		app.removeUser(userID);
 	    		System.out.println(data.getUserList().size());
 	    		break;
+	    	//Get a movie by ID
 	    	case 3:
 	    		System.out.println("Find a movie by ID");
 	    		input.nextLine();
 	    		int movieID = input.nextInt();
 	    		System.out.println(app.getMovie(movieID));
 	    		break;
+	    	//Get ratings from user
 	    	case 4:
 	    		System.out.println("Enter a user's ID to get the ratings from: ");
 	    		input.nextLine();
 	    		int usersID = input.nextInt();
 	    		System.out.println(app.getUserRatings(usersID));
 	    		break;
+	    	//Add new movie
 	    	case 5:
 	    		System.out.println("Add a Movie: ");
 	    		System.out.println("Enter the title of the Movie: ");
