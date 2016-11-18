@@ -39,6 +39,6 @@ public class Rating {
 	
 	@Override
 	public String toString() {
-		return "Rating: userID = " + userID + ", movieID = " + movieID + ", rating = " + rating;
+		return "\nRating: userID = " + userID + ", movieID = " + movieID + ", rating = " + rating;
 	}
 }

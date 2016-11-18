@@ -55,14 +55,27 @@ public class MainRecommender implements Recommender{
 	}
 
 	@Override
+	public String getUserRatings(int userID)
+	{
+		ArrayList<String> ratings = new ArrayList<String>();
+		for(int i = 0; i < data.getRatingList().size(); i++)
+		{
+			if(data.getRatingList().get(i).getUserID()==userID)
+			{
+				ratings.add(data.getRatingList().get(i).toString()+data.getMovieList().get(data.getRatingList().get(i).getMovieID()-1).getTitle());
+			}
+		}
+		return ratings.toString();
+	}
+	/*@Override
 	public String getUserRatings(int userID) 
 	{
+		ArrayList<Integer> ratings = new ArrayList<Integer>();
+		ArrayList<String> movies = new ArrayList<String>();
 		for(int i = 0; i < data.getRatingList().size(); i++) 
 		{
 			if(userID == data.getRatingList().get(i).getUserID()) //When input = Ratings object ID
 			{
-				ArrayList<Integer> ratings = new ArrayList<Integer>();
-				ArrayList<String> movies = new ArrayList<String>();
 				for(int j = 0; j < data.getRatingList().size(); j++)
 				{
 					if(userID == data.getRatingList().get(j).getUserID())
@@ -83,6 +96,7 @@ public class MainRecommender implements Recommender{
 			
 		return "Doesn't exist";
 	}
+	*/
 
 	@Override
 	public String getUserRecommendations(int userID) 
