@@ -5,11 +5,18 @@ import utils.Serializer;
 
 public class MainRecommender implements Recommender{
 
-	private LoadData data = new LoadData();
+	private LoadData data;
 	private Serializer serializer;
 	
 	public MainRecommender()
 	{
+		try{
+		data = new LoadData();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Can't read");
+		}
 	}
 	
 	public MainRecommender(Serializer serializer)
@@ -21,7 +28,7 @@ public class MainRecommender implements Recommender{
 	@Override
 	public void addUser(String firstName, String lastName, int age, String gender, String occupation) 
 	{
-		data.getUserList().add(new User(data.getUserList().size()+1,firstName,lastName,age,gender,occupation));
+		data.getUserList().add(new User(data.getUserList().size()+1,firstName,lastName,age,gender,new Occupation(occupation)));
 	}
 
 	@Override
@@ -62,41 +69,11 @@ public class MainRecommender implements Recommender{
 		{
 			if(data.getRatingList().get(i).getUserID()==userID)
 			{
-				ratings.add(data.getRatingList().get(i).toString()+data.getMovieList().get(data.getRatingList().get(i).getMovieID()-1).getTitle());
+				ratings.add(data.getRatingList().get(i).toString()+" Movie: "+data.getMovieList().get(data.getRatingList().get(i).getMovieID()-1).getTitle());
 			}
 		}
 		return ratings.toString();
 	}
-	/*@Override
-	public String getUserRatings(int userID) 
-	{
-		ArrayList<Integer> ratings = new ArrayList<Integer>();
-		ArrayList<String> movies = new ArrayList<String>();
-		for(int i = 0; i < data.getRatingList().size(); i++) 
-		{
-			if(userID == data.getRatingList().get(i).getUserID()) //When input = Ratings object ID
-			{
-				for(int j = 0; j < data.getRatingList().size(); j++)
-				{
-					if(userID == data.getRatingList().get(j).getUserID())
-					{
-						ratings.add(data.getRatingList().get(j).getRating());
-					}
-				}
-				for(int k = 0; k < data.getMovieList().size(); k++)
-				{
-					if(data.getRatingList().get(i).getMovieID() == data.getMovieList().get(k).getMovieID())
-					{
-						movies.add(data.getMovieList().get(k).getTitle());
-					}
-				}
-				return ratings.toString()+movies.toString();
-			}
-		}
-			
-		return "Doesn't exist";
-	}
-	*/
 
 	@Override
 	public String getUserRecommendations(int userID) 

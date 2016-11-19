@@ -11,6 +11,7 @@ public class Rating {
 		this.userID = userID;
 		this.movieID = movieID;
 		this.rating = rating;
+			
 	}
 
 	public int getUserID() {
@@ -34,7 +35,10 @@ public class Rating {
 	}
 
 	public void setRating(int rating) {
-		this.rating = rating;
+		if(rating >= -5 && rating <= 5) //rating can't be less than -5 or greater than 5
+		{
+			this.rating = rating;
+		}
 	}
 	
 	@Override

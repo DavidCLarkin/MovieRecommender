@@ -8,10 +8,10 @@ import utils.XMLSerializer;
 
 public class Driver {
 	
-    static File  datastore = new File("users5.xml");
+    static File datastore = new File("users5.xml");
     static Serializer serializer = new XMLSerializer(datastore);
     
-	public static LoadData data = new LoadData();
+	public static LoadData data;
 	public static Scanner input = new Scanner(System.in);
 	public static MainRecommender app = new MainRecommender(serializer);
 		
@@ -22,10 +22,8 @@ public class Driver {
 	
 	public static void main(String[] args) throws Exception
 	{
+		data = new LoadData();
 		app.load();
-		data.readUserFile("D:/Programming/EclipseWork/MovieRecommender/data/users5.dat");
-		data.readRatingFile("D:/Programming/EclipseWork/MovieRecommender/data/ratings5.dat");
-		data.readMovieFile("D:/Programming/EclipseWork/MovieRecommender/data/items5.dat");
 		runMenu();
 		app.write();
 	}
@@ -54,7 +52,7 @@ public class Driver {
 	    		System.out.println("Enter the user's occupation: ");
 	    		String occupation = input.nextLine();
 	    		app.addUser(firstName,lastName,age,gender,occupation);
-	    		System.out.println(data.getUserList().get(5));
+	    		System.out.println(data.getUserList().get(data.getUserList().size()-1));
 	    		break;
 	    	//Remove user
 	    	case 2:

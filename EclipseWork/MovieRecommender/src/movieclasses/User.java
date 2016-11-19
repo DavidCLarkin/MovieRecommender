@@ -7,15 +7,27 @@ public class User implements Serializable {
 	private String lastName; 
 	private int age; 
 	private String gender;
-	private String occupation;
+	private Occupation occupation;
 	private int userID;
 	
-	public User(int userID, String firstName, String lastName, int age, String gender, String occupation)
+	public User(int userID, String firstName, String lastName, int age, String gender, Occupation occupation)
 	{
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
 		this.gender = gender;
+		if(gender.contains("m") && !gender.contains("f") || gender.contains("M") && !gender.contains("F"))
+		{
+			setGender("Male");
+		}
+		
+		if(gender.contains("f") || gender.contains("F"))
+		{
+			setGender("Female");
+		}
+		
+		
+		
 		this.occupation = occupation;
 		this.userID = userID;
 	}
@@ -49,7 +61,10 @@ public class User implements Serializable {
 	}
 
 	public void setAge(int age) {
-		this.age = age;
+		if(age <= 140)
+		{
+			this.age = age;
+		}
 	}
 
 	public String getGender() {
@@ -57,21 +72,28 @@ public class User implements Serializable {
 	}
 
 	public void setGender(String gender) {
-		this.gender = gender;
+		if(gender.contains("m") && !gender.contains("f") || gender.contains("M") && !gender.contains("F"))
+		{
+			this.gender = "Male";
+		}
+		if(gender.contains("f") || gender.contains("F"))
+		{
+			this.gender = "Female";
+		}
 	}
 
-	public String getOccupation() {
+	public Occupation getOccupation() {
 		return occupation;
 	}
 
-	public void setOccupation(String occupation) {
+	public void setOccupation(Occupation occupation) {
 		this.occupation = occupation;
 	}
 	
 	@Override
 	public String toString() {
-		return "User: UserID = " + userID + ", firstName = " + firstName + ", LastName = " + lastName + ", Age = " + age + ", Gender = " + gender
-				+ ", Occupation = " + occupation;
+		return "User:  userID=" + userID +", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", gender=" + gender
+				+ ", occupation=" + occupation.getOccupation();
 	}
 
 }
