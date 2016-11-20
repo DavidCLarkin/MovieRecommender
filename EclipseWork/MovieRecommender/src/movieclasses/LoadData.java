@@ -2,6 +2,7 @@ package movieclasses;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class LoadData {
@@ -10,9 +11,9 @@ public class LoadData {
 	{
 		try
 		{
-			readUserFile("D:/Programming/EclipseWork/MovieRecommender/data/users5.dat");
-			readRatingFile("D:/Programming/EclipseWork/MovieRecommender/data/ratings5.dat");
-			readMovieFile("D:/Programming/EclipseWork/MovieRecommender/data/items5.dat");
+			readUserFile("D:/Programming/EclipseWork/MovieRecommender/data/users.dat");
+			readRatingFile("D:/Programming/EclipseWork/MovieRecommender/data/ratings.dat");
+			readMovieFile("D:/Programming/EclipseWork/MovieRecommender/data/items.dat");
 			readOccupationFile("D:/Programming/EclipseWork/MovieRecommender/data/occupation.dat");
 		}
 		

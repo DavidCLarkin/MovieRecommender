@@ -31,7 +31,7 @@ public class Driver {
 	public static void runMenu()
 	{
 	    System.out.println("Enter what you want to do \nChoices Below: \n 1) Add a User\n 2) Remove a User"
-	    		+ "\n 3) Get movie by ID \n 4) Get Ratings by ID \n 5) Add a Movie");
+	    		+ "\n 3) Get movie by ID \n 4) Get Ratings by ID \n 5) Add a Movie \n 6) Average Rating of a Movie \n 7) Top 10 Movies");
 	    
 	    int choice = input.nextInt();
 	    switch (choice) 
@@ -88,7 +88,19 @@ public class Driver {
 	    		input.nextLine();
 	    		String url = input.nextLine();
 	    		app.addMovie(title, year, url);
-	    		System.out.println(data.getMovieList().get(10));
+	    		System.out.println(data.getMovieList().get(data.getMovieList().size()-1));
+	    		break;
+	    	//average rating of a movie
+	    	case 6:
+	    		System.out.println("Enter a movie ID to get the average rating: ");
+	    		int id = input.nextInt();
+	    		System.out.println("Average for "+data.getMovieList().get(id-1).getTitle()+": "+app.averageOneMovie(id));
+	    		break;
+	    	case 7:
+	    		System.out.println(app.getTopTenMovies());
+	    		break;
+	    	case 8:
+	    		
 	    }
 	}
 }

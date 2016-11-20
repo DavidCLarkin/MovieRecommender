@@ -1,6 +1,9 @@
 package movieclasses;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import utils.Serializer;
 
 public class MainRecommender implements Recommender{
@@ -67,7 +70,7 @@ public class MainRecommender implements Recommender{
 		ArrayList<String> ratings = new ArrayList<String>();
 		for(int i = 0; i < data.getRatingList().size(); i++)
 		{
-			if(data.getRatingList().get(i).getUserID()==userID)
+			if(data.getRatingList().get(i).getUserID() == userID)
 			{
 				ratings.add(data.getRatingList().get(i).toString()+" Movie: "+data.getMovieList().get(data.getRatingList().get(i).getMovieID()-1).getTitle());
 			}
@@ -85,10 +88,46 @@ public class MainRecommender implements Recommender{
 	@Override
 	public Iterable<String> getTopTenMovies() 
 	{
-		//if ratings are high on a movie compared to other movies
-		return null;
+		ArrayList<String> movies = new ArrayList<String>();
+		for(int i = 0; i < data.getMovieList().size(); i++)
+		{
+			movies.add("Rating: "+averageOneMovie(i+1)+" Movie: "+data.getMovieList().get(data.getMovieList().get(i).getMovieID()-1).getTitle()+ "\n");
+		}
+		
+		Collections.sort(movies, Collections.reverseOrder());
+		
+		return movies.subList(0, 10);
 	}
-
+	
+	//used for other methods, helper.
+	private double calculateAverage(List<Integer> ratings) 
+	{
+		Integer sum = 0;
+		if(!ratings.isEmpty()) 
+		{
+			for (Integer rating : ratings) 
+			{
+				sum += rating;
+		    }
+		    return (sum.doubleValue() / ratings.size());
+		}
+		return sum;
+	}
+	
+	//average of one movie
+	public double averageOneMovie(int movieID)
+	{
+		ArrayList<Integer> movieRatings = new ArrayList<Integer>();
+		for(int i = 0; i < data.getRatingList().size(); i++)
+		{
+			if(movieID == data.getRatingList().get(i).getMovieID()) // if input == movieID in list
+			{
+				movieRatings.add(data.getRatingList().get(i).getRating());// add them to a list
+			}
+		}	
+		return calculateAverage(movieRatings);//print the average of the movie
+	}
+	
 	@Override
 	public void load() 
 	{

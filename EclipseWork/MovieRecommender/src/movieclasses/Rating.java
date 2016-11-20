@@ -1,7 +1,10 @@
 package movieclasses;
 
+import java.util.Comparator;
+
 public class Rating {
 
+	public static final Comparator<Rating> BY_RATING = new ByRating();
 	private int userID;
 	private int movieID;
 	private int rating;
@@ -41,8 +44,22 @@ public class Rating {
 		}
 	}
 	
+	public static class ByRating implements Comparator<Rating>
+	{
+		@Override
+		public int compare(Rating v, Rating w) 
+		{
+			if(v.rating > w.rating)
+				return -1;
+			if(v.rating < w.rating)
+				return +1;
+			return 0;
+		}
+	}
 	@Override
 	public String toString() {
 		return "\nRating: userID = " + userID + ", movieID = " + movieID + ", rating = " + rating;
 	}
+
+
 }
