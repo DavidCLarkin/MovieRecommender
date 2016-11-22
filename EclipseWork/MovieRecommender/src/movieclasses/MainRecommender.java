@@ -38,7 +38,6 @@ public class MainRecommender implements Recommender{
 	public void removeUser(int userID) 
 	{
 		data.getUserList().remove(userID);
-		
 	}
 
 	@Override
@@ -94,9 +93,9 @@ public class MainRecommender implements Recommender{
 			movies.add("Rating: "+averageOneMovie(i+1)+" Movie: "+data.getMovieList().get(data.getMovieList().get(i).getMovieID()-1).getTitle()+ "\n");
 		}
 		
-		Collections.sort(movies, Collections.reverseOrder());
+		Collections.sort(movies, Collections.reverseOrder()); //sort them by rating so it returns them in order
 		
-		return movies.subList(0, 10);
+		return movies.subList(0, 10); //sublist from 0 to 10 exclusive
 	}
 	
 	//used for other methods, helper.
@@ -109,7 +108,7 @@ public class MainRecommender implements Recommender{
 			{
 				sum += rating;
 		    }
-		    return (sum.doubleValue() / ratings.size());
+		    return (sum.doubleValue() / ratings.size()); //average of the value
 		}
 		return sum;
 	}
