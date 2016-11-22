@@ -26,8 +26,6 @@ public class User implements Serializable {
 			setGender("Female");
 		}
 		
-		
-		
 		this.occupation = occupation;
 		this.userID = userID;
 	}
@@ -92,8 +90,8 @@ public class User implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "User:  userID=" + userID +", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", gender=" + gender
-				+ ", occupation=" + occupation.getOccupation();
+		return "User: UserID = " + userID +", First Name = " + firstName + ", Last Name = " + lastName + ", Age = " + age + ", Gender = " + gender
+				+ ", Occupation = " + occupation.getOccupation();
 	}
 
 }

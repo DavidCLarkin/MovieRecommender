@@ -38,21 +38,8 @@ public class Driver {
 	    //String firstName, String lastName, int age, String gender, String occupation
 	    {
 	    	//Add user
-	    	case 1:
-	    		System.out.println("Enter a first name for the user: ");
-	    		input.nextLine(); //Scanner bug
-	    		String firstName = input.nextLine();
-	    		System.out.println("Enter a second name for the user: ");
-	    		String lastName = input.nextLine();
-	    		System.out.println("Enter the age of the user: ");
-	    		int age = input.nextInt();
-	    		System.out.println("Enter the user's gender: ");
-	    		input.nextLine(); //bug
-	    		String gender = input.nextLine();
-	    		System.out.println("Enter the user's occupation: ");
-	    		String occupation = input.nextLine();
-	    		app.addUser(firstName,lastName,age,gender,occupation);
-	    		System.out.println(data.getUserList().get(data.getUserList().size()-1));
+	    	case 1:	
+	    		addUser();
 	    		break;
 	    	//Remove user
 	    	case 2:
@@ -103,4 +90,83 @@ public class Driver {
 	    		
 	    }
 	}
+	
+	public static void addUser()
+	{
+		boolean goodInput = false;
+		boolean goodInputTwo = false;
+		boolean answerBool = false;
+		int age=0;
+		String gender="";
+		
+		System.out.println("Enter a first name for the user: ");
+		input.nextLine(); //Scanner bug
+		String firstName = input.nextLine();
+		System.out.println("Enter a second name for the user: ");
+		String lastName = input.nextLine();
+		do{
+			try
+			{
+				System.out.println("Enter the age of the user: ");
+				age = input.nextInt();
+				goodInput = true;
+			}
+			catch(Exception e)
+			{
+	    		String throwOut = input.nextLine();
+	    		System.out.println("Invalid number entered - try again");
+			}
+		} while (!goodInput);
+		
+		do{
+			try
+			{
+				System.out.println("Enter the user's gender (M or F): ");
+				gender = input.nextLine();
+				if(gender.contains("m") || gender.contains("f") || gender.contains("M") || gender.contains("F"))
+				{
+					goodInputTwo = true;
+				}
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Please type 'm' or 'f'");
+			}
+		} while(!goodInputTwo);
+
+
+		System.out.println("Enter the user's occupation: ");
+		String occupation = input.nextLine();
+		
+		do
+		{
+			try
+			{
+				System.out.println("These are the details you entered, do you want to add this user? (Y/N) " 
+						+ "\n" +new User(data.getUserList().size()+1,firstName,lastName,age,gender,new Occupation(occupation)).toString()); //print inputted data
+				String answer = input.nextLine();
+				if(answer.contains("y") || answer.contains("Y"))
+				{
+					app.addUser(firstName,lastName,age,gender,occupation);
+					answerBool = true;
+					System.out.println("Returning to the main menu...");
+					runMenu();
+				}
+				else if(answer.contains("n") || answer.contains("N"))
+				{
+					System.out.println("Going back to the menu...(User not created)\n");
+					answerBool = true;
+					runMenu();
+				}
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Please type Y/N");
+			}
+		} while (!answerBool);
+					
+	}	
+			
 }
