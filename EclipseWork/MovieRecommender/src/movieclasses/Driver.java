@@ -43,11 +43,7 @@ public class Driver {
 	    		break;
 	    	//Remove user
 	    	case 2:
-	    		System.out.println("Enter the number of the user you want to delete: ");
-	    		input.nextLine();
-	    		int userID = input.nextInt();
-	    		app.removeUser(userID);
-	    		System.out.println(data.getUserList().size());
+	    		removeUser();
 	    		break;
 	    	//Get a movie by ID
 	    	case 3:
@@ -91,6 +87,7 @@ public class Driver {
 	    }
 	}
 	
+	//adding a user
 	public static void addUser()
 	{
 		boolean goodInput = false;
@@ -167,6 +164,43 @@ public class Driver {
 			}
 		} while (!answerBool);
 					
-	}	
+	}
+	
+	//removing a user
+	public static void removeUser()
+	{
+		boolean goodInput = false;
+		int userID = 0;
+		System.out.println("Enter the name(s) of the users you want to choose from:(Case-Sensitive) ");
+		input.nextLine();
+		String userName = input.nextLine();
+		
+		for(int i = 0; i < data.getUserList().size(); i++)
+		{	//if input contained in a first or last name
+			if(data.getUserList().get(i).getFirstName().contains(userName) || data.getUserList().get(i).getLastName().contains(userName))
+			{
+				System.out.println(data.getUserList().get(i));
+			}
+		}
+		do{
+			try
+			{
+				System.out.println("\nEnter the 'UserID' of the user you want to delete: ");
+				userID = input.nextInt();
+				System.out.println("Removing user "+userID+"...");
+				app.removeUser(userID-1); //-1 because of indexing
+				System.out.println(data.getUserList().size());
+				goodInput = true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Please input the user's ID");
+			}
+		} while (!goodInput);
+		
+		runMenu();
+		
+	}
 			
 }
