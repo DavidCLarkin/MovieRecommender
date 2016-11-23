@@ -31,7 +31,8 @@ public class Driver {
 	public static void runMenu()
 	{
 	    System.out.println("Enter what you want to do \nChoices Below: \n 1) Add a User\n 2) Remove a User"
-	    		+ "\n 3) Get movie by ID \n 4) Get Ratings by ID \n 5) Add a Movie \n 6) Average Rating of a Movie \n 7) Top 10 Movies");
+	    		+ "\n 3) Get movie by ID \n 4) Get Ratings by ID \n 5) Add a Movie \n 6) Average Rating of a Movie \n 7) Top 10 Movies"+
+	    		"\n 8) Add a Rating \n 9) Get Recommendations");
 	    
 	    int choice = input.nextInt();
 	    switch (choice) 
@@ -47,10 +48,7 @@ public class Driver {
 	    		break;
 	    	//Get a movie by ID
 	    	case 3:
-	    		System.out.println("Find a movie by ID");
-	    		input.nextLine();
-	    		int movieID = input.nextInt();
-	    		System.out.println(app.getMovie(movieID));
+	    		getMovieByID();
 	    		break;
 	    	//Get ratings from user
 	    	case 4:
@@ -70,7 +68,7 @@ public class Driver {
 	    		System.out.println("Enter the IMDB url: ");
 	    		input.nextLine();
 	    		String url = input.nextLine();
-	    		app.addMovie(title, year, url);
+	    		//app.addMovie(title, year, url);//INPUT GENRE
 	    		System.out.println(data.getMovieList().get(data.getMovieList().size()-1));
 	    		break;
 	    	//average rating of a movie
@@ -83,6 +81,14 @@ public class Driver {
 	    		System.out.println(app.getTopTenMovies());
 	    		break;
 	    	case 8:
+	    		addRating();
+	    		break;
+	    	case 9:
+	    		System.out.println("enter id");
+	    		int userID = input.nextInt();
+	    		System.out.println("Getting recommendations based on what the user hasn't seen..");
+	    		app.getUserRecommendations(userID);
+	    		break;
 	    		
 	    }
 	}
@@ -200,6 +206,46 @@ public class Driver {
 		} while (!goodInput);
 		
 		runMenu();
+		
+	}
+	
+	public static void getMovieByID()
+	{
+		boolean goodInput = false;
+		int movieID = 0;
+		
+		System.out.println("To get matching movies, type a keyword from the movie title: ");
+		input.nextLine();
+		String movieName = input.nextLine();
+		//print all movies containing the input
+		for(int i = 0; i < data.getMovieList().size(); i++)
+		{
+			if(data.getMovieList().get(i).getTitle().contains(movieName))
+			{
+				System.out.println("Movie ID: "+data.getMovieList().get(i).getMovieID() +", Title: "+ data.getMovieList().get(i).getTitle());
+			}
+		}
+		//loop until valid input
+		do{
+			try
+			{
+				System.out.println("Choose the movie you want to get, by it's ID: ");
+				movieID = input.nextInt();
+				goodInput = true;
+				System.out.println(app.getMovie(movieID));
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Invalid input - please enter a valid ID");
+			}
+		} while (!goodInput);
+		
+		runMenu();
+	}
+	
+	public static void addRating()
+	{
 		
 	}
 			

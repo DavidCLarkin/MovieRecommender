@@ -13,8 +13,7 @@ public class Rating {
 	{
 		this.userID = userID;
 		this.movieID = movieID;
-		this.rating = rating;
-			
+		this.rating = rating;	
 	}
 
 	public int getUserID() {

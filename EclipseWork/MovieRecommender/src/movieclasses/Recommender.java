@@ -6,7 +6,7 @@ public interface Recommender {
 	
 	public void removeUser(int userID);
 	
-	public void addMovie(String title, int year, String url);
+	public void addMovie(String title, int year, String url, String genre);
 	
 	public void addRating(int userID, int movieID, int rating);
 	
@@ -14,7 +14,7 @@ public interface Recommender {
 	
 	public String getUserRatings(int userID);
 	
-	public String getUserRecommendations(int userID);
+	public Iterable<String> getUserRecommendations(int userID);
 	
 	public Iterable<String> getTopTenMovies();
 	

@@ -41,9 +41,9 @@ public class MainRecommender implements Recommender{
 	}
 
 	@Override
-	public void addMovie(String title, int year, String url) 
+	public void addMovie(String title, int year, String url, String genre) 
 	{
-		data.getMovieList().add(new Movie(data.getMovieList().size()+1, title, Integer.toString(year), url));
+		data.getMovieList().add(new Movie(data.getMovieList().size()+1, title, Integer.toString(year), url, genre));
 	}
 
 	@Override
@@ -78,10 +78,27 @@ public class MainRecommender implements Recommender{
 	}
 
 	@Override
-	public String getUserRecommendations(int userID) 
+	public Iterable<String> getUserRecommendations(int userID) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String finals = "";
+		ArrayList<String> averages = new ArrayList<String>();
+		ArrayList<String> recommendations = new ArrayList<String>();
+		for(int i = 0; i < data.getMovieList().size(); i++)
+		{
+			averages.add("Rating: "+averageOneMovie(i+1)+"Movie: "+data.getMovieList().get(data.getMovieList().get(i).getMovieID()-1).getTitle()+ "\n");
+		}
+		Collections.sort(averages, Collections.reverseOrder());
+		
+		for(int i = 0; i < averages.size(); i++)
+		{
+			if(getUserRatings(userID).contains(data.getMovieList().get(i).getTitle())) //if users ratings contains the title of any movie
+			{
+				averages.remove(i); //remove those items
+			}
+		}
+		System.out.println(averages);
+		
+		return averages;
 	}
 
 	@Override

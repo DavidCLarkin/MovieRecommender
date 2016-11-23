@@ -92,7 +92,7 @@ public class LoadData {
 			String[] lineSplits = temp.split(separator); //separate terms by tab;
 			if(lineSplits.length==23)
 			{
-				Movie movie = new Movie(0,"","","");
+				Movie movie = new Movie(0,"","","","");
 				movie.setMovieID(Integer.parseInt(lineSplits[0])); //set the firstName of object
 				movie.setTitle(lineSplits[1]);
 				movie.setRelease(lineSplits[2]);
