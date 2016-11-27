@@ -121,60 +121,7 @@ public class Driver {
 	       System.out.println("Exiting... bye");
 	       System.exit(0);
 	}
-	/*public static void runMenu()
-	{
-	    System.out.println("Enter what you want to do \nChoices Below: \n 1) Add a User\n 2) Remove a User"
-	    		+ "\n 3) Get movie by ID \n 4) Get Ratings by ID \n 5) Add a Movie \n 6) Average Rating of a Movie \n 7) Top 10 Movies"+
-	    		"\n 8) Add a Rating \n 9) Get Recommendations");
-	    
-	    boolean goodInput = false;
-	    int choice = input.nextInt();
-	    while(choice != 0)
-	    {
-		    switch (choice)
-		    {
-		    	//Add user
-		    	case 1:	
-		    		addUser();
-		    		break;
-		    	//Remove user
-		    	case 2:
-		    		removeUser();
-		    		break;
-		    	//Get a movie by ID
-		    	case 3:
-		    		getMovieByID();
-		    		break;
-		    	//Get ratings from user
-		    	case 4:
-		    		getRatingsByID();
-		    		break;
-		    	//Add new movie
-		    	case 5:
-		    		addMovie();
-		    		break;
-		    	//average rating of a movie
-		    	case 6:
-		    		averageRatingMovie();
-		    		break;
-		    	//top 10 movies
-		    	case 7:
-		    		System.out.println(app.getTopTenMovies());
-		    		break;
-		    	case 8:
-		    		//addRating();
-		    		break;
-		    	//Recommendations
-		    	case 9:
-		    		getRecommendations();
-		    		break;
-		    	default:
-		    		System.out.println("You've entered an invalid number, try again");
-		    		break;
-		    }
-	    } 
-	}*/
-	
+
 	//adding a user
 	public static void addUser()
 	{
