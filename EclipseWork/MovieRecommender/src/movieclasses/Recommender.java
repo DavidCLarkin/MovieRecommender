@@ -6,7 +6,7 @@ public interface Recommender {
 	
 	public void removeUser(int userID);
 	
-	public void addMovie(String title, int year, String url, String genre);
+	public void addMovie(String title, int year, String url);
 	
 	public void addRating(int userID, int movieID, int rating);
 	

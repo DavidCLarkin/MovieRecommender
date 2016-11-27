@@ -2,7 +2,6 @@ package movieclasses;
 
 import java.io.File;
 import java.util.Scanner;
-
 import utils.Serializer;
 import utils.XMLSerializer;
 
@@ -28,70 +27,153 @@ public class Driver {
 		app.write();
 	}
 	
+	
+	private static int Menu()
+	{
+		boolean goodInput = false;
+		int choice=0;
+		do
+		{
+			try
+			{
+				System.out.println("---------------------------------------------------------------------|");
+				System.out.println("|  Welcome to Movie Recommender				    	     |");
+				System.out.println("|  Here, you can choose what option you want to do, seen below.      |");
+				System.out.println("|  Simply input a number to choose your option.			     |");
+				System.out.println("|--------------------------------------------------------------------|");
+				System.out.println("|   1) Add a User						     |");
+				System.out.println("|   2) Remove a User					     	     |");
+				System.out.println("|   3) Get a Movie by ID					     |");
+				System.out.println("|   4) Get Ratings by ID					     |");
+				System.out.println("|   5) Add a Movie					   	     |"); 
+				System.out.println("|   6) Average Rating of a Movie				     |");
+				System.out.println("|   7) Top 10 Movies			     			     |"); 
+				System.out.println("|   8) Add a Rating			     			     |");
+				System.out.println("|   9) Get Recommendations			    		     |");
+				System.out.println("|--------------------------------------------------------------------|");
+				System.out.println("|   0) Exit						             |");
+				System.out.println("|--------------------------------------------------------------------|");
+				System.out.println("Choose your option ==>");
+				choice = input.nextInt();
+				goodInput = true;
+			}
+			catch(Exception e)
+			{
+				System.out.println("Enter a valid number from the choices above");
+				String throwOut = input.nextLine();
+			}
+		} while(!goodInput);
+		return choice;
+	}
+	
 	public static void runMenu()
+	{
+		int choice = Menu();
+		while(choice != 0)
+		{
+			switch (choice)
+			{	
+		    	//Add user
+		    	case 1:	
+		    		addUser();
+		    		break;
+		    	//Remove user
+		    	case 2:
+		    		removeUser();
+		    		break;
+		    	//Get a movie by ID
+		    	case 3:
+		    		getMovieByID();
+		    		break;
+		    	//Get ratings from user
+		    	case 4:
+		    		getRatingsByID();
+		    		break;
+		    	//Add new movie
+		    	case 5:
+		    		addMovie();
+		    		break;
+		    	//average rating of a movie
+		    	case 6:
+		    		averageRatingMovie();
+		    		break;
+		    	//top 10 movies
+		    	case 7:
+		    		System.out.println(app.getTopTenMovies());
+		    		break;
+		    	case 8:
+		    		//addRating();
+		    		break;
+		    	//Recommendations
+		    	case 9:
+		    		getRecommendations();
+		    		break;
+
+				default: 	System.out.println("You've entered an invalid number : " + choice +". Try again");
+						break;
+			}
+			
+	        System.out.println("\nPress any key to continue...");
+	        input.nextLine();
+	        input.nextLine(); //bug in scanner
+	        choice = Menu();
+		}
+	       System.out.println("Exiting... bye");
+	       System.exit(0);
+	}
+	/*public static void runMenu()
 	{
 	    System.out.println("Enter what you want to do \nChoices Below: \n 1) Add a User\n 2) Remove a User"
 	    		+ "\n 3) Get movie by ID \n 4) Get Ratings by ID \n 5) Add a Movie \n 6) Average Rating of a Movie \n 7) Top 10 Movies"+
 	    		"\n 8) Add a Rating \n 9) Get Recommendations");
 	    
+	    boolean goodInput = false;
 	    int choice = input.nextInt();
-	    switch (choice) 
-	    //String firstName, String lastName, int age, String gender, String occupation
+	    while(choice != 0)
 	    {
-	    	//Add user
-	    	case 1:	
-	    		addUser();
-	    		break;
-	    	//Remove user
-	    	case 2:
-	    		removeUser();
-	    		break;
-	    	//Get a movie by ID
-	    	case 3:
-	    		getMovieByID();
-	    		break;
-	    	//Get ratings from user
-	    	case 4:
-	    		System.out.println("Enter a user's ID to get the ratings from: ");
-	    		input.nextLine();
-	    		int usersID = input.nextInt();
-	    		System.out.println(app.getUserRatings(usersID));
-	    		break;
-	    	//Add new movie
-	    	case 5:
-	    		System.out.println("Add a Movie: ");
-	    		System.out.println("Enter the title of the Movie: ");
-	    		input.nextLine();
-	    		String title = input.nextLine();
-	    		System.out.println("Enter the year it was released: ");
-	    		int year = input.nextInt();
-	    		System.out.println("Enter the IMDB url: ");
-	    		input.nextLine();
-	    		String url = input.nextLine();
-	    		//app.addMovie(title, year, url);//INPUT GENRE
-	    		System.out.println(data.getMovieList().get(data.getMovieList().size()-1));
-	    		break;
-	    	//average rating of a movie
-	    	case 6:
-	    		System.out.println("Enter a movie ID to get the average rating: ");
-	    		int id = input.nextInt();
-	    		System.out.println("Average for "+data.getMovieList().get(id-1).getTitle()+": "+app.averageOneMovie(id));
-	    		break;
-	    	case 7:
-	    		System.out.println(app.getTopTenMovies());
-	    		break;
-	    	case 8:
-	    		addRating();
-	    		break;
-	    	case 9:
-	    		System.out.println("enter id");
-	    		int userID = input.nextInt();
-	    		System.out.println("Getting recommendations based on what the user hasn't seen..");
-	    		app.getUserRecommendations(userID);
-	    		break;
-	    		
-	    }
-	}
+		    switch (choice)
+		    {
+		    	//Add user
+		    	case 1:	
+		    		addUser();
+		    		break;
+		    	//Remove user
+		    	case 2:
+		    		removeUser();
+		    		break;
+		    	//Get a movie by ID
+		    	case 3:
+		    		getMovieByID();
+		    		break;
+		    	//Get ratings from user
+		    	case 4:
+		    		getRatingsByID();
+		    		break;
+		    	//Add new movie
+		    	case 5:
+		    		addMovie();
+		    		break;
+		    	//average rating of a movie
+		    	case 6:
+		    		averageRatingMovie();
+		    		break;
+		    	//top 10 movies
+		    	case 7:
+		    		System.out.println(app.getTopTenMovies());
+		    		break;
+		    	case 8:
+		    		//addRating();
+		    		break;
+		    	//Recommendations
+		    	case 9:
+		    		getRecommendations();
+		    		break;
+		    	default:
+		    		System.out.println("You've entered an invalid number, try again");
+		    		break;
+		    }
+	    } 
+	}*/
 	
 	//adding a user
 	public static void addUser()
@@ -172,7 +254,6 @@ public class Driver {
 					
 	}
 	
-	//removing a user
 	public static void removeUser()
 	{
 		boolean goodInput = false;
@@ -222,7 +303,13 @@ public class Driver {
 		{
 			if(data.getMovieList().get(i).getTitle().contains(movieName))
 			{
-				System.out.println("Movie ID: "+data.getMovieList().get(i).getMovieID() +", Title: "+ data.getMovieList().get(i).getTitle());
+				System.out.println("Movie ID: "+data.getMovieList().get(i).getMovieID() +", Title: "+ data.getMovieList().get(i).getTitle()+"\n");
+			}
+			else
+			{
+				System.out.println("No movie exists with that name\n\n Press Enter to return to menu");
+				input.nextLine();
+				runMenu();
 			}
 		}
 		//loop until valid input
@@ -244,9 +331,137 @@ public class Driver {
 		runMenu();
 	}
 	
-	public static void addRating()
+	public static void getRatingsByID()
 	{
+		boolean goodInput = false;
+		int userID = 0;
+		System.out.println("Enter the name(s) of the users you want to choose from:(Case-Sensitive) ");
+		input.nextLine();
+		String userName = input.nextLine();
 		
+		for(int i = 0; i < data.getUserList().size(); i++)
+		{	//if input contained in a first or last name
+			if(data.getUserList().get(i).getFirstName().contains(userName) || data.getUserList().get(i).getLastName().contains(userName))
+			{
+				System.out.println(data.getUserList().get(i));
+			}
+		}
+		do{
+			try
+			{
+				System.out.println("\nEnter the 'UserID' you want to get ratings from: ");
+				userID = input.nextInt();
+				System.out.println("Getting "+userID+"'s ratings...");
+				System.out.println(app.getUserRatings(userID));
+				goodInput = true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Please input the user's ID");
+			}
+		} while (!goodInput);
+		
+		runMenu();
+	}
+	
+	public static void addMovie()
+	{
+		boolean goodInput = false;
+		int year = 0;
+		
+		System.out.println("Enter the title of the Movie: ");
+		input.nextLine();
+		String title = input.nextLine();
+		do{
+			try{
+				System.out.println("Enter the year it was released: ");
+				year = input.nextInt();
+				goodInput=true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Please enter an integer");
+			}
+		} while(!goodInput);
+
+		System.out.println("Enter the IMDB url: ");
+		input.nextLine();
+		String url = input.nextLine();
+		//add the movie with inputs
+		app.addMovie(title, year, url);//INPUT GENRE
+		//print the movie
+		System.out.println(data.getMovieList().get(data.getMovieList().size()-1)+"\n");
+		runMenu();
 	}
 			
+	
+	public static void averageRatingMovie()
+	{
+		boolean goodInput = false;
+		int userID = 0;
+		System.out.println("Enter a prefix of the movie you want to choose from:(Case-Sensitive) ");
+		input.nextLine();
+		String movieName = input.nextLine();
+		
+		for(int i = 0; i < data.getUserList().size(); i++)
+		{	//if input contained in a first or last name
+			if(data.getMovieList().get(i).getTitle().contains(movieName))
+			{
+				System.out.println(data.getMovieList().get(i));
+			}
+		}
+		do{
+			try{
+				System.out.println("\nEnter a movie ID to get the average rating: ");
+				userID = input.nextInt();
+				//get the average and print it
+				System.out.println("Average for "+data.getMovieList().get(userID-1).getTitle()+": "+app.averageOneMovie(userID)+"\n");
+				goodInput = true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.print("Enter an integer");
+			}
+		} while(!goodInput);
+		
+		System.out.println("Press enter to return to menu");
+		input.nextLine();//pause the program
+		input.nextLine();
+		runMenu();
+	}
+	
+	public static void getRecommendations()
+	{
+		boolean goodInput = false;
+		int userID = 0;
+		System.out.println("Enter the name(s) of the users you want to choose to get recommendations from:(Case-Sensitive) ");
+		input.nextLine();
+		String userName = input.nextLine();
+		
+		for(int i = 0; i < data.getUserList().size(); i++)
+		{	//if input contained in a first or last name
+			if(data.getUserList().get(i).getFirstName().contains(userName) || data.getUserList().get(i).getLastName().contains(userName))
+			{
+				System.out.println(data.getUserList().get(i));
+			}
+		}
+		do{
+			try{
+				System.out.println("Enter the user's ID");
+				userID = input.nextInt();
+				System.out.println("Getting recommendations based on what the user hasn't seen..");
+				app.getUserRecommendations(userID);
+				goodInput=true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Please enter an integer");
+			}
+		} while(!goodInput);
+
+	}
 }

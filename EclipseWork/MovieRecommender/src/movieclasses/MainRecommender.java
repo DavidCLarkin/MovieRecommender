@@ -41,9 +41,9 @@ public class MainRecommender implements Recommender{
 	}
 
 	@Override
-	public void addMovie(String title, int year, String url, String genre) 
+	public void addMovie(String title, int year, String url) 
 	{
-		data.getMovieList().add(new Movie(data.getMovieList().size()+1, title, Integer.toString(year), url, genre));
+		data.getMovieList().add(new Movie(data.getMovieList().size()+1, title, Integer.toString(year), url));
 	}
 
 	@Override
@@ -80,9 +80,7 @@ public class MainRecommender implements Recommender{
 	@Override
 	public Iterable<String> getUserRecommendations(int userID) 
 	{
-		String finals = "";
 		ArrayList<String> averages = new ArrayList<String>();
-		ArrayList<String> recommendations = new ArrayList<String>();
 		for(int i = 0; i < data.getMovieList().size(); i++)
 		{
 			averages.add("Rating: "+averageOneMovie(i+1)+"Movie: "+data.getMovieList().get(data.getMovieList().get(i).getMovieID()-1).getTitle()+ "\n");

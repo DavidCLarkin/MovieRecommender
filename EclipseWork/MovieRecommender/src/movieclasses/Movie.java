@@ -7,16 +7,14 @@ public class Movie implements Serializable {
 	private String title;
 	private String release;
 	private String url;
-	private String genre;
 	
 
-	public Movie(int movieID, String title, String release, String url, String genre)
+	public Movie(int movieID, String title, String release, String url)
 	{
 		this.movieID = movieID;
 		this.title = title;
 		this.release = release;
 		this.url = url;
-		this.genre = genre;
 	}
 	
 	public int getMovieID() {
@@ -51,17 +49,9 @@ public class Movie implements Serializable {
 		this.url = url;
 	}
 	
-	public String getGenre() { 
-		return genre;
-	}
-
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
 	@Override
 	public String toString() {
-		return "Movie: movieID=" + movieID + ", title=" + title + ", release=" + release + ", url=" + url + ", genre="
-				+ genre;
+		return "Movie: movieID=" + movieID + ", title=" + title + ", release=" + release + ", url=" + url;
 	}
 	
 }
