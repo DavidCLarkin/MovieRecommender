@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 import utils.Serializer;
+import utils.XMLSerializer;
 
 public class MainRecommender implements Recommender{
 
 	private LoadData data;
-	private Serializer serializer;
 	
 	public MainRecommender()
 	{
@@ -20,11 +20,6 @@ public class MainRecommender implements Recommender{
 		{
 			System.out.println("Can't read");
 		}
-	}
-	
-	public MainRecommender(Serializer serializer)
-	{
-		this.serializer = serializer;
 	}
 	
 	
@@ -141,29 +136,16 @@ public class MainRecommender implements Recommender{
 		}	
 		return calculateAverage(movieRatings);//print the average of the movie
 	}
-	
+
 	@Override
-	public void load() 
-	{
-		try {
-			serializer.read();
-		} catch (Exception e) {
-			System.out.println("Cannot be read "+e);
-		}
-		data = (LoadData) serializer.pop();
+	public void load() {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void write() 
-	{
-		serializer.push(data);
-		try {
-			serializer.write();
-		} catch (Exception e) {
-			System.out.println("Cannot be stored "+e);
-			e.printStackTrace();
-		}
+	public void write() {
+		// TODO Auto-generated method stub
 		
 	}
 

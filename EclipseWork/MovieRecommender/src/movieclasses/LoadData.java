@@ -1,36 +1,87 @@
 package movieclasses;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
-public class LoadData {
+
+public class LoadData implements Serializable {
 	
-	public LoadData() throws Exception
-	{
-		try
-		{
-			readUserFile("D:/Programming/EclipseWork/MovieRecommender/data/users.dat");
-			readRatingFile("D:/Programming/EclipseWork/MovieRecommender/data/ratings.dat");
-			readMovieFile("D:/Programming/EclipseWork/MovieRecommender/data/items.dat");
-			readOccupationFile("D:/Programming/EclipseWork/MovieRecommender/data/occupation.dat");
-		}
-		
-		catch(Exception e)
-		{
-			System.out.println("Can't read "+e);
-		}
-	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6860964969879268141L;
 	private static ArrayList<Rating> ratings = new ArrayList<Rating>();
 	private static ArrayList<User> users = new ArrayList<User>();
 	private static ArrayList<Movie> movies = new ArrayList<Movie>();
 	private static ArrayList<Occupation> occupations = new ArrayList<Occupation>();
+	static Scanner scan = new Scanner(System.in);
+	
+	public LoadData()
+	{
+		try
+		{
+			loadUsers("Users.xml");
+			loadMovies("Movies.xml");
+			loadRatings("Ratings.xml");
+			loadOccupation("Occupations.xml");
+		}
+		catch(Exception e)
+		{
+			try {
+				readUserFile("D:/Programming/EclipseWork/MovieRecommender/data/users.dat");
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				readRatingFile("D:/Programming/EclipseWork/MovieRecommender/data/ratings.dat");
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				readMovieFile("D:/Programming/EclipseWork/MovieRecommender/data/items.dat");
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				readOccupationFile("D:/Programming/EclipseWork/MovieRecommender/data/occupation.dat");
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println("Can't read "+e);
+		}
+		
+		try{
+			write("Users",users);
+			write("Movies",movies);
+			write("Ratings",ratings);
+			write("Occupations", occupations);
+		}
+		catch(Exception e)
+		{
+			System.out.println("cant read");
+		}
+	}
 	
 	
 	public static void readUserFile(String url) throws Exception
 	{
-		Scanner scan = new Scanner(new File(url));
+		scan = new Scanner(new File(url));
 		String separator = "[|]"; //separate by whitespace
 		String temp;
 		while (scan.hasNextLine()) //while scanner has another line
@@ -58,7 +109,7 @@ public class LoadData {
 	
 	public static void readRatingFile(String url) throws Exception
 	{
-		Scanner scan = new Scanner(new File(url));
+		scan = new Scanner(new File(url));
 		String separator = "[|]"; //separate by whitespace
 		String temp;
 		while (scan.hasNextLine()) //while scanner has another line
@@ -83,7 +134,7 @@ public class LoadData {
 	
 	public static void readMovieFile(String url) throws Exception
 	{
-		Scanner scan = new Scanner(new File(url));
+		scan = new Scanner(new File(url));
 		String separator = "[|]"; //separate by whitespace
 		String temp;
 		while (scan.hasNextLine()) //while scanner has another line
@@ -109,7 +160,7 @@ public class LoadData {
 	
 	public static void readOccupationFile(String url) throws Exception
 	{
-		Scanner scan = new Scanner(new File(url));
+		scan = new Scanner(new File(url));
 		String separator = "[|]"; //separate by whitespace
 		String temp;
 		while (scan.hasNextLine()) //while scanner has another line
@@ -149,5 +200,81 @@ public class LoadData {
 	{
 		return occupations;
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public void write(String fileName, ArrayList list) throws IOException
+	{
+		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(new BufferedOutputStream(new FileOutputStream(fileName+".xml"))));
+		out.writeObject(list);
+		out.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadUsers(String file) throws Exception
+	{
+		ObjectInputStream is = null;
+		try{
+			is = new ObjectInputStream(new GZIPInputStream(new BufferedInputStream(new FileInputStream(file))));
+			users = (ArrayList<User>) is.readObject();
+		}
+		finally
+		{
+			if(is != null)
+			{
+				is.close();
+			}
+		}
+	}
+	@SuppressWarnings("unchecked")
+	public void loadMovies(String file) throws Exception
+	{
+		ObjectInputStream is = null;
+		try{
+			is = new ObjectInputStream(new GZIPInputStream(new BufferedInputStream(new FileInputStream(file))));
+			movies = (ArrayList<Movie>) is.readObject();
+		}
+		finally
+		{
+			if(is != null)
+			{
+				is.close();
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadRatings(String file) throws Exception
+	{
+		ObjectInputStream is = null;
+		try{
+			is = new ObjectInputStream(new GZIPInputStream(new BufferedInputStream(new FileInputStream(file))));
+			ratings = (ArrayList<Rating>) is.readObject();
+		}
+		finally
+		{
+			if(is != null)
+			{
+				is.close();
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadOccupation(String file) throws Exception
+	{
+		ObjectInputStream is = null;
+		try{
+			is = new ObjectInputStream(new GZIPInputStream(new BufferedInputStream(new FileInputStream(file))));
+			occupations = (ArrayList<Occupation>) is.readObject();
+		}
+		finally
+		{
+			if(is != null)
+			{
+				is.close();
+			}
+		}
+	}
+
 
 }

@@ -12,7 +12,7 @@ public class Driver {
     
 	public static LoadData data;
 	public static Scanner input = new Scanner(System.in);
-	public static MainRecommender app = new MainRecommender(serializer);
+	public static MainRecommender app = new MainRecommender();
 		
 	
 	public Driver()
@@ -22,9 +22,7 @@ public class Driver {
 	public static void main(String[] args) throws Exception
 	{
 		data = new LoadData();
-		app.load();
 		runMenu();
-		app.write();
 	}
 	
 	
