@@ -78,7 +78,7 @@ public class MainRecommender implements Recommender{
 		ArrayList<String> averages = new ArrayList<String>();
 		for(int i = 0; i < data.getMovieList().size(); i++)
 		{
-			averages.add("Rating: "+averageOneMovie(i+1)+"Movie: "+data.getMovieList().get(data.getMovieList().get(i).getMovieID()-1).getTitle()+ "\n");
+			averages.add("Rating: "+averageOneMovie(i+1)+" Movie: "+data.getMovieList().get(data.getMovieList().get(i).getMovieID()-1).getTitle()+ "\n");
 		}
 		Collections.sort(averages, Collections.reverseOrder());
 		
@@ -89,9 +89,9 @@ public class MainRecommender implements Recommender{
 				averages.remove(i); //remove those items
 			}
 		}
-		System.out.println(averages);
+		//System.out.println(averages);
 		
-		return averages;
+		return averages.subList(0, 25); //only return top 25 movies
 	}
 
 	@Override
