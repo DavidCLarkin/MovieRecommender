@@ -2,6 +2,10 @@ package movieclasses;
 
 import java.io.File;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.rules.Stopwatch;
+
 import utils.Serializer;
 import utils.XMLSerializer;
 
@@ -13,7 +17,6 @@ public class Driver {
 	public static LoadData data;
 	public static Scanner input = new Scanner(System.in);
 	public static MainRecommender app = new MainRecommender();
-		
 	
 	public Driver()
 	{
@@ -21,8 +24,28 @@ public class Driver {
 	
 	public static void main(String[] args) throws Exception
 	{
+		//RUNTIMES
+		//User Ratings
+		/*long startTime = System.currentTimeMillis();
+		//System.out.println(app.getUserRatings(235)); .1 seconds elapsed
+		//long estimated = System.currentTimeMillis() - startTime; 
+		System.out.println(estimated); */
+		
+		//User Recommendations
+		/*long startTime = System.currentTimeMillis();
+		System.out.println(app.getUserRecommendations(325); 1.3 seconds elapsed
+		long estimated = System.currentTimeMillis() - startTime; 
+		System.out.println(estimated); */
+		
+		//Top Ten Movies
+		/*long startTime = System.currentTimeMillis();
+		System.out.println(app.getTopTenMovies; 0.38 seconds elapsed
+		long estimated = System.currentTimeMillis() - startTime; 
+		System.out.println(estimated); */
+		
 		data = new LoadData();
 		runMenu();
+		
 	}
 	
 	
@@ -107,7 +130,7 @@ public class Driver {
 		    		getRecommendations();
 		    		break;
 
-				default: 	System.out.println("You've entered an invalid number : " + choice +". Try again");
+				default: 	System.err.println("You've entered an invalid number : " + choice +". Try again");
 						break;
 			}
 			
@@ -144,7 +167,7 @@ public class Driver {
 			catch(Exception e)
 			{
 	    		String throwOut = input.nextLine();
-	    		System.out.println("Invalid number entered - try again");
+	    		System.err.println("Invalid number entered - try again");
 			}
 		} while (!goodInput);
 		
@@ -161,7 +184,7 @@ public class Driver {
 			catch(Exception e)
 			{
 				String throwOut = input.nextLine();
-				System.out.println("Please type 'm' or 'f'");
+				System.err.println("Please type 'm' or 'f'");
 			}
 		} while(!goodInputTwo);
 
@@ -227,7 +250,7 @@ public class Driver {
 			catch(Exception e)
 			{
 				String throwOut = input.nextLine();
-				System.out.println("Please input the user's ID");
+				System.err.println("Please input the user's ID");
 			}
 		} while (!goodInput);
 		
@@ -252,7 +275,7 @@ public class Driver {
 			}
 			else
 			{
-				System.out.println("No movie exists with that name\n\n Press Enter to return to menu");
+				System.err.println("No movie exists with that name\n\n Press Enter to return to menu");
 				input.nextLine();
 				runMenu();
 			}
@@ -269,7 +292,7 @@ public class Driver {
 			catch(Exception e)
 			{
 				String throwOut = input.nextLine();
-				System.out.println("Invalid input - please enter a valid ID");
+				System.err.println("Invalid input - please enter a valid ID");
 			}
 		} while (!goodInput);
 		
@@ -303,7 +326,7 @@ public class Driver {
 			catch(Exception e)
 			{
 				String throwOut = input.nextLine();
-				System.out.println("Please input the user's ID");
+				System.err.println("Please input the user's ID");
 			}
 		} while (!goodInput);
 		
@@ -327,7 +350,7 @@ public class Driver {
 			catch(Exception e)
 			{
 				String throwOut = input.nextLine();
-				System.out.println("Please enter an integer");
+				System.err.println("Please enter an integer");
 			}
 		} while(!goodInput);
 
@@ -368,7 +391,7 @@ public class Driver {
 			catch(Exception e)
 			{
 				String throwOut = input.nextLine();
-				System.out.print("Enter an integer");
+				System.err.print("Enter an integer");
 			}
 		} while(!goodInput);
 		
@@ -398,13 +421,13 @@ public class Driver {
 				System.out.println("Enter the user's ID");
 				userID = input.nextInt();
 				System.out.println("Getting recommendations based on what the user hasn't seen..");
-				app.getUserRecommendations(userID);
+				System.out.println(app.getUserRecommendations(userID));
 				goodInput=true;
 			}
 			catch(Exception e)
 			{
 				String throwOut = input.nextLine();
-				System.out.println("Please enter an integer");
+				System.err.println("Please enter an integer");
 			}
 		} while(!goodInput);
 

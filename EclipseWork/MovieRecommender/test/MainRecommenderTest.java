@@ -28,6 +28,12 @@ public class MainRecommenderTest {
 		data = new LoadData();
 	}
 	
+	@After
+	public void tearDown()
+	{
+		app = null;
+		data = null;
+	}
 	
 	@Test
 	public void testAddRating()
@@ -103,11 +109,18 @@ public class MainRecommenderTest {
 				", Rating: 5.0 Movie: Santa with Muscles (1996)",app.getUserRecommendations(1).toString().substring(1,82));
 	}
 	
-	@After
-	public void tearDown()
+	@Ignore
+	@Test
+	public void testTopTenMovies()
 	{
-		app = null;
-		data = null;
+		Iterable<String> movies = new ArrayList<String>();
+		movies = app.getTopTenMovies();
+		Assert.assertNotNull("Movies expected", movies);
+		assertTrue(app.getTopTenMovies().toString().length() > 0);
+		assertEquals("[Rating: 5.0 Movie: They Made Me a Criminal (1939)"+"\n"+
+				", Rating: 5.0 Movie: Star Kid (1997)", app.getTopTenMovies().toString().substring(0,87));
+		
 	}
+	
 
 }

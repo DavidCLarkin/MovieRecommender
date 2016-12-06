@@ -89,8 +89,6 @@ public class MainRecommender implements Recommender{
 				averages.remove(i); //remove those items
 			}
 		}
-		//System.out.println(averages);
-		
 		return averages.subList(0, 25); //only return top 25 movies
 	}
 
