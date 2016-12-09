@@ -1,3 +1,11 @@
+/**
+ * Driver class
+ * 
+ * Used for I/O with the user using a menu driven system, 
+ * calling various methods throughout the classes.
+ * @author David Larkin
+ * @version 09/12/2016
+ */
 package movieclasses;
 
 import java.io.File;
@@ -18,10 +26,17 @@ public class Driver {
 	public static Scanner input = new Scanner(System.in);
 	public static MainRecommender app = new MainRecommender();
 	
-	public Driver()
+	/**
+	 * Driver Constructor
+	 */
+	public Driver() throws Exception
 	{
 	}
 	
+	/**
+	 * Main method
+	 * Loads data and lists and runs the main menu
+	 */
 	public static void main(String[] args) throws Exception
 	{
 		//RUNTIMES
@@ -48,7 +63,9 @@ public class Driver {
 		
 	}
 	
-	
+	/**
+	 * A menu to display options and takes in an integer
+	 */
 	private static int Menu()
 	{
 		boolean goodInput = false;
@@ -87,6 +104,10 @@ public class Driver {
 		return choice;
 	}
 	
+	/**
+	 * Switch statement which takes an input from Menu()
+	 * and executes a certain method based on it.
+	 */
 	public static void runMenu()
 	{
 		int choice = Menu();
@@ -143,7 +164,9 @@ public class Driver {
 	       System.exit(0);
 	}
 
-	//adding a user
+	/**
+	 * Method to call the Add a user which handles exceptions
+	 */
 	public static void addUser()
 	{
 		boolean goodInput = false;
@@ -222,6 +245,9 @@ public class Driver {
 					
 	}
 	
+	/**
+	 * Method to call the Remove a user method which has exception handling
+	 */
 	public static void removeUser()
 	{
 		boolean goodInput = false;
@@ -253,11 +279,11 @@ public class Driver {
 				System.err.println("Please input the user's ID");
 			}
 		} while (!goodInput);
-		
-		runMenu();
-		
 	}
 	
+	/**
+	 * Method to call the MovieByID function which has exception handling
+	 */
 	public static void getMovieByID()
 	{
 		boolean goodInput = false;
@@ -272,12 +298,6 @@ public class Driver {
 			if(data.getMovieList().get(i).getTitle().contains(movieName))
 			{
 				System.out.println("Movie ID: "+data.getMovieList().get(i).getMovieID() +", Title: "+ data.getMovieList().get(i).getTitle()+"\n");
-			}
-			else
-			{
-				System.err.println("No movie exists with that name\n\n Press Enter to return to menu");
-				input.nextLine();
-				runMenu();
 			}
 		}
 		//loop until valid input
@@ -296,9 +316,11 @@ public class Driver {
 			}
 		} while (!goodInput);
 		
-		runMenu();
 	}
 	
+	/**
+	 * Method to call the RatingsByID function which has exception handling
+	 */
 	public static void getRatingsByID()
 	{
 		boolean goodInput = false;
@@ -326,13 +348,15 @@ public class Driver {
 			catch(Exception e)
 			{
 				String throwOut = input.nextLine();
-				System.err.println("Please input the user's ID");
+				System.out.println("Please input the user's ID");
 			}
 		} while (!goodInput);
 		
-		runMenu();
 	}
 	
+	/**
+	 * Method to call the Add a Movie function which has exception handling
+	 */
 	public static void addMovie()
 	{
 		boolean goodInput = false;
@@ -364,7 +388,9 @@ public class Driver {
 		runMenu();
 	}
 			
-	
+	/**
+	 * Method to call the Average Rating function which has exception handling
+	 */
 	public static void averageRatingMovie()
 	{
 		boolean goodInput = false;
@@ -398,9 +424,11 @@ public class Driver {
 		System.out.println("Press enter to return to menu");
 		input.nextLine();//pause the program
 		input.nextLine();
-		runMenu();
 	}
 	
+	/**
+	 * Method to call the Recommendations function which has exception handling
+	 */
 	public static void getRecommendations()
 	{
 		boolean goodInput = false;

@@ -18,7 +18,7 @@ public interface Recommender {
 	
 	public Iterable<String> getTopTenMovies();
 	
-	public void load();
+	public void load() throws Exception;
 	
-	public void write();
+	public void write() throws Exception;
 }

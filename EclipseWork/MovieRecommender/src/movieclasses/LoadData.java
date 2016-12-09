@@ -1,3 +1,10 @@
+/**
+ * LoadData Class
+ * Class to hold all Lists of objects like Rating, User, Movie and Occupation
+ * 
+ * @author David Larkin
+ * @version 09/12/2016
+ */
 package movieclasses;
 
 import java.io.BufferedInputStream;
@@ -17,10 +24,6 @@ import java.util.zip.GZIPOutputStream;
 
 public class LoadData implements Serializable {
 	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6860964969879268141L;
 	private static ArrayList<Rating> ratings = new ArrayList<Rating>();
 	private static ArrayList<User> users = new ArrayList<User>();
@@ -28,6 +31,10 @@ public class LoadData implements Serializable {
 	private static ArrayList<Occupation> occupations = new ArrayList<Occupation>();
 	static Scanner scan = new Scanner(System.in);
 	
+	/**
+	 * Constructor for LoadData, tries to load each file or Reads them
+	 * XML is not implemented to can't load
+	 */
 	public LoadData()
 	{
 		try
@@ -65,7 +72,7 @@ public class LoadData implements Serializable {
 			}
 			System.out.println("Can't read "+e);
 		}
-		
+		/*
 		try{
 			write("Users",users);
 			write("Movies",movies);
@@ -76,9 +83,14 @@ public class LoadData implements Serializable {
 		{
 			System.out.println("cant read");
 		}
+		*/
 	}
 	
-	
+	/**
+	 * Method to read the Users file
+	 * @param url the file location
+	 * @throws Exception
+	 */
 	public static void readUserFile(String url) throws Exception
 	{
 		scan = new Scanner(new File(url));
@@ -104,9 +116,14 @@ public class LoadData implements Serializable {
 				 throw new Exception("Invalid member length: "+lineSplits.length);
 			}
 		}
+		write("Users",users);
 		scan.close();
 	}
-	
+/**
+ * Method to read the Rating file
+ * @param url the url of the file location
+ * @throws Exception
+ */
 	public static void readRatingFile(String url) throws Exception
 	{
 		scan = new Scanner(new File(url));
@@ -129,9 +146,14 @@ public class LoadData implements Serializable {
 				 throw new Exception("Invalid member length: "+lineSplits.length);
 			}
 		}
+		write("Ratings",ratings);
 		scan.close();
 	}
-	
+/**
+ * Method to read Movie file	
+ * @param url the location of the file
+ * @throws Exception
+ */
 	public static void readMovieFile(String url) throws Exception
 	{
 		scan = new Scanner(new File(url));
@@ -155,9 +177,14 @@ public class LoadData implements Serializable {
 				 throw new Exception("Invalid member length: "+lineSplits.length);
 			}
 		}
+		write("Movies",movies);
 		scan.close();
 	}
-	
+/**
+ * Method to read Occupation file
+ * @param url the location of the file
+ * @throws Exception
+ */
 	public static void readOccupationFile(String url) throws Exception
 	{
 		scan = new Scanner(new File(url));
@@ -178,37 +205,59 @@ public class LoadData implements Serializable {
 				 throw new Exception("Invalid member length: "+lineSplits.length);
 			}
 		}
+		write("Occupations",occupations);
 		scan.close();
 	}
 	
+/**
+ * Getter for RatingList
+ * @return list of Ratings
+ */
 	public ArrayList<Rating> getRatingList()
 	{
 		return ratings;
 	}
-	
+
+/**
+ * Getter for UserList
+ * @return List of Users
+ */
 	public ArrayList<User> getUserList()
 	{
 		return users;
 	}
 	
+/**
+ * Getter for MovieList
+ * @return List of Movies
+ */
 	public ArrayList<Movie> getMovieList()
 	{
 		return movies;
 	}
 	
+/**
+ * Getter for OccupationList
+ * @return List of Occupations
+ */
 	public ArrayList<Occupation> getOccupationList()
 	{
 		return occupations;
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public void write(String fileName, ArrayList list) throws IOException
+	public static void write(String fileName, ArrayList list) throws IOException
 	{
 		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(new BufferedOutputStream(new FileOutputStream(fileName+".xml"))));
 		out.writeObject(list);
 		out.close();
 	}
-	
+
+	/**
+	 * Load Users (Not implemented)
+	 * @param file
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
 	public void loadUsers(String file) throws Exception
 	{
@@ -225,6 +274,12 @@ public class LoadData implements Serializable {
 			}
 		}
 	}
+/**
+ * Load Movies (Not implemented)
+ * @param file
+ * @throws Exception
+ */
+	
 	@SuppressWarnings("unchecked")
 	public void loadMovies(String file) throws Exception
 	{
@@ -242,6 +297,11 @@ public class LoadData implements Serializable {
 		}
 	}
 	
+/**
+ * Load Ratings (Not Implemented)
+ * @param file
+ * @throws Exception
+ */
 	@SuppressWarnings("unchecked")
 	public void loadRatings(String file) throws Exception
 	{
@@ -258,7 +318,12 @@ public class LoadData implements Serializable {
 			}
 		}
 	}
-	
+
+/**
+ * Load Occupations(Not Implemented)
+ * @param file
+ * @throws Exception
+ */
 	@SuppressWarnings("unchecked")
 	public void loadOccupation(String file) throws Exception
 	{
@@ -275,6 +340,5 @@ public class LoadData implements Serializable {
 			}
 		}
 	}
-
 
 }

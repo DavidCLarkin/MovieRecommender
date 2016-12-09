@@ -1,3 +1,10 @@
+/**
+ * XMLSerializer class
+ * NOT IMPLEMENTEd
+ * 
+ * @author David Larkin
+ * @version 09/12/2016
+ */
 package utils;
 
 import com.thoughtworks.xstream.XStream;
@@ -16,21 +23,34 @@ public class XMLSerializer implements Serializer
   private Stack stack = new Stack();
   private File file;
 
+  /**
+   * Constructor for XMLSerializer
+   * @param file
+   */
   public XMLSerializer(File file)
   {
     this.file = file;
   }
 
+  /**
+   * Push method to push an object to a stack
+   */
   public void push(Object o)
   {
     stack.push(o);
   }
 
+  /**
+   * Pop Method to take an object off a stack
+   */
   public Object pop()
   {
     return stack.pop(); 
   }
 
+  /**
+   * Read Method to read a file
+   */
   @SuppressWarnings("unchecked")
   public void read() throws Exception
   {
@@ -41,10 +61,10 @@ public class XMLSerializer implements Serializer
       XStream xstream = new XStream(new DomDriver());
       is = xstream.createObjectInputStream(new FileReader(file));
       Object obj = is.readObject();
-      while (obj != null)
+      while(obj != null)
       {
-        stack.push(obj);
-        obj = is.readObject();
+    	  stack.push(obj);
+    	  obj = is.readObject();
       }
     }
     finally
@@ -56,6 +76,9 @@ public class XMLSerializer implements Serializer
     }
   }
 
+  /**
+   * Write method to write to file
+   */
   public void write() throws Exception
   {
     ObjectOutputStream os = null;
@@ -64,9 +87,9 @@ public class XMLSerializer implements Serializer
     {
       XStream xstream = new XStream(new DomDriver());
       os = xstream.createObjectOutputStream(new FileWriter(file));
-      while (!stack.empty())
+      while(!stack.empty())
       {
-        os.writeObject(stack.pop());  
+    	  os.writeObject(stack.pop());
       }
     }
     finally
