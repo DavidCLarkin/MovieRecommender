@@ -144,7 +144,7 @@ public class Driver {
 		    		System.out.println(app.getTopTenMovies());
 		    		break;
 		    	case 8:
-		    		//addRating();
+		    		addRating();
 		    		break;
 		    	//Recommendations
 		    	case 9:
@@ -385,7 +385,6 @@ public class Driver {
 		app.addMovie(title, year, url);//INPUT GENRE
 		//print the movie
 		System.out.println(data.getMovieList().get(data.getMovieList().size()-1)+"\n");
-		runMenu();
 	}
 			
 	/**
@@ -459,5 +458,82 @@ public class Driver {
 			}
 		} while(!goodInput);
 
+	}
+	
+	/**
+	 * Method to call the addRating method with exception handling
+	 */
+	public static void addRating()
+	{
+		boolean goodInput = false;
+		boolean goodInputTwo = false;
+		boolean goodInputThree = false;
+		int movieID = 0;
+		String name = "";
+		int userID = 0;
+		int rating = 0;
+		
+		System.out.println("Enter the name of the user you're adding a rating for: ");
+		input.nextLine();
+		name = input.nextLine();
+		for(int i = 0; i < data.getUserList().size(); i++)
+		{
+			if(data.getUserList().get(i).getFirstName().contains(name) || data.getUserList().get(i).getLastName().contains(name))
+			{
+				System.out.println(data.getUserList().get(i));
+			}
+		}
+		
+		do{
+			try{
+				System.out.println("Enter the ID of the user you're adding a rating for: ");
+				userID = input.nextInt();
+				goodInputTwo = true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.err.println("Please enter the ID of the user");
+			}
+		} while(!goodInputTwo);
+		
+		System.out.println("Enter the title of the Movie: ");
+		input.nextLine();
+		String title = input.nextLine();
+		for(int i = 0; i < data.getMovieList().size(); i++)
+		{
+			if(data.getMovieList().get(i).getTitle().contains(title))
+			{
+				System.out.println("Movie ID: "+data.getMovieList().get(i).getMovieID() +", Title: "+ data.getMovieList().get(i).getTitle()+"\n");
+			}
+		}
+		
+		do{
+			try{
+				System.out.println("Enter the ID of the movie you want to add a rating for: ");
+				movieID = input.nextInt();
+				goodInput = true; //while not an integer
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.err.println("Please enter the ID of the movie");
+			}
+		} while (!goodInput);
+		
+		do{
+			try{
+				System.out.println("Enter the rating you want to give the movie 1-10");
+				rating = input.nextInt();
+				goodInputThree = true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.err.println("Please enter a rating (1-10");
+			}
+		} while(!goodInputThree);
+		
+		app.addRating(userID, movieID, rating-5); // -5 so it fits the file structure
 	}
 }
