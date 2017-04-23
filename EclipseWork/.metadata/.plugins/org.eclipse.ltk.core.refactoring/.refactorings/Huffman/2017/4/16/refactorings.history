@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;BTreePrinter.java&apos; to &apos;FamilyTree/src/main&apos;&#x0D;&#x0A;- Original project: &apos;Huffman&apos;&#x0D;&#x0A;- Destination element: &apos;FamilyTree/src/main&apos;&#x0D;&#x0A;- Original element: &apos;huffman.BTreePrinter.java&apos;" description="Copy compilation unit" destination="=FamilyTree/src&lt;main" element1="/src&lt;huffman{BTreePrinter.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1492784368800" units="1" version="1.0"/>
+</session>
